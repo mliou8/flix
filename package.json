@@ -26,7 +26,8 @@
     "electron"
   ],
   "dependencies": {
-    "electron-debug": "^0.5.0"
+    "electron-debug": "^0.5.0",
+    "js-data": "^2.8.2"
   },
   "devDependencies": {
     "electron-packager": "^5.0.0",
