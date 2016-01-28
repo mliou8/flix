@@ -30,7 +30,8 @@
     "electron-debug": "^0.5.0",
     "js-data": "^2.8.2",
     "js-data-angular": "^3.1.0",
-    "js-data-localstorage": "^2.3.2"
+    "js-data-localstorage": "^2.3.2",
+    "omdb": "^0.5.0"
   },
   "devDependencies": {
     "electron-packager": "^5.0.0",
