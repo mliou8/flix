@@ -26,8 +26,11 @@
     "electron"
   ],
   "dependencies": {
+    "angular": "^1.4.9",
     "electron-debug": "^0.5.0",
-    "js-data": "^2.8.2"
+    "js-data": "^2.8.2",
+    "js-data-angular": "^3.1.0",
+    "js-data-localstorage": "^2.3.2"
   },
   "devDependencies": {
     "electron-packager": "^5.0.0",
