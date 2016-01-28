@@ -26,6 +26,9 @@
     "electron"
   ],
   "dependencies": {
+    "electron-debug": "^0.5.0",
+    "express": "^4.13.4",
+    "path": "^0.12.7",
     "angular": "^1.4.9",
     "angular-animate": "^1.4.9",
     "angular-local-storage": "^0.2.2",
