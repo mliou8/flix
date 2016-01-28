@@ -1,7 +1,7 @@
 'use strict';
 const electron = require('electron');
 const app = electron.app;
-
+const expApp = require('./app.js')
 // report crashes to the Electron project
 require('crash-reporter').start();
 
