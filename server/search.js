@@ -3,25 +3,27 @@ var path = require('path');
 var dir = require('node-dir');
 var glob = require("multi-glob").glob;
 var find = require('findit');
-
+var parseVideo = require('video-name-parser');
 var homedir = (process.platform === 'win32') ? process.env.HOMEPATH : process.env.HOME;
 var arg = process.argv[2];
 var finder = find(homedir);
 
 
 //Set up variables to find user's homedir
-
-
 var vidExtensions = ['mkv', 'avi', 'mov', 'gifv', 'flv']
+
 var soln = [];
+  var index = 1;
 finder.on('path', function (file, stat) {
    var showString = file.split('/');
   //  console.log("showString ", showString);
    var temp = showString[showString.length - 1].split(".");
   //  console.log(temp);
    if (vidExtensions.indexOf(temp[temp.length - 1]) !== -1) {
-     soln.push(file);
+     soln.push(parseVideo(file));
    }
+   console.log("Thank you for your patience!", index);
+   index++;
 });
 
 finder.on('end', function (file, stat) {

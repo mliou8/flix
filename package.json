@@ -26,9 +26,6 @@
     "electron"
   ],
   "dependencies": {
-    "electron-debug": "^0.5.0",
-    "express": "^4.13.4",
-    "path": "^0.12.7",
     "angular": "^1.4.9",
     "angular-animate": "^1.4.9",
     "angular-local-storage": "^0.2.2",
@@ -44,7 +41,6 @@
     "findit": "^2.0.0",
     "fs": "0.0.2",
     "glob": "^6.0.4",
-    "inflight": "^1.0.4",
     "gulp": "^3.8.11",
     "gulp-babel": "^5.3.0",
     "gulp-concat": "^2.6.0",
@@ -60,6 +56,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
+    "inflight": "^1.0.4",
     "lodash": "^4.0.1",
     "minimatch": "^3.0.0",
     "multi-glob": "^1.0.1",
@@ -69,11 +66,12 @@
     "path": "^0.12.7",
     "path-is-absolute": "^1.0.0",
     "react": "^0.14.6",
+    "regex": "^0.1.1",
     "requirejs": "^2.1.22",
-    "socket.io": "^1.4.5",
-    "walk": "^2.3.9",
     "run-sequence": "^1.1.5",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "video-name-parser": "^1.0.1",
+    "walk": "^2.3.9"
   },
   "devDependencies": {
     "electron-packager": "^5.0.0",
