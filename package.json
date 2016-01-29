@@ -26,9 +26,6 @@
     "electron"
   ],
   "dependencies": {
-    "electron-debug": "^0.5.0",
-    "express": "^4.13.4",
-    "path": "^0.12.7",
     "angular": "^1.4.9",
     "angular-animate": "^1.4.9",
     "angular-local-storage": "^0.2.2",
@@ -58,6 +55,7 @@
     "gulp-uglify": "^1.5.1",
     "lodash": "^4.0.1",
     "nodemon": "^1.8.1",
+    "path": "^0.12.7",
     "run-sequence": "^1.1.5",
     "socket.io": "^1.4.5"
   },
