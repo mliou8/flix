@@ -68,7 +68,6 @@
     "react": "^0.14.6",
     "regex": "^0.1.1",
     "requirejs": "^2.1.22",
-    "path": "^0.12.7",
     "run-sequence": "^1.1.5",
     "socket.io": "^1.4.5",
     "video-name-parser": "^1.0.1",
