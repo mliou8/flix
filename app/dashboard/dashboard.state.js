@@ -1,5 +1,6 @@
 app.config(function($stateProvider){
   $stateProvider.state('dashboardState', {
-    //code
+    url: '/',
+    templateUrl: './app/dashboard/dashboard.html'
   })
 })
