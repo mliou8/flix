@@ -1,7 +1,7 @@
 'use strict';
 const electron = require('electron');
 const app = electron.app;
-const expApp = require('./app.js')
+const expApp = require('./server/app.js');
 // report crashes to the Electron project
 require('crash-reporter').start();
 
@@ -20,7 +20,8 @@ function onClosed() {
 function createMainWindow() {
 	const win = new electron.BrowserWindow({
 		width: 1280,
-		height: 720
+		height: 720,
+		darkTheme: true
 	});
 
 	win.loadURL(`file://${__dirname}/index.html`);
