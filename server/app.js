@@ -10,7 +10,7 @@ expApp.use('/recently_added', require('./routes/recently_added'))
 expApp.use('/movies', require('./routes/movies'))
 expApp.use('/shows', require('./routes/shows'))
 
-expApp.use(function(err, req, res, next){
+expApp.use(function(err, req, res, next) {
   console.log(err);
   res.status(500).send(err.message);
 })
