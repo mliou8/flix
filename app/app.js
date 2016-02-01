@@ -1,14 +1,5 @@
-var app = angular.module('main', ['ui.router, js-data']);
-console.log('inside app.js');
+var app = angular.module('main', ['ui.router']);
 
-app.config(function(DSProvider, DSLocalStorageAdapterProvider, $urlRouterProvider) {
-  DSLocalStorageAdapterProvider.defaults.basePath = '~/Library/Application Support/Shafreeky';
+app.config(function($urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
-
-})
-.run(function (DS, DSLocalStorageAdapter) {
-  // the local storage adapter was already registered
-  DS.adapters.ls === DSLocalStorageAdapter;
-  // but we want to make it the default
-  DS.registerAdapter('ls', DSLocalStorageAdapter, { default: true });
 });

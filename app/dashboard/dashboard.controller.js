@@ -1,4 +1,5 @@
-app.controller('DashboardCtrl', function($scope){
+app.controller('DashboardCtrl', function($scope, Cache, show){
   //code
-  console.log('inside DashboardCtrl')
+  console.log('this is show', show);
+  $scope.show = show;
 })
