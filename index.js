@@ -1,6 +1,7 @@
 'use strict';
 const electron = require('electron');
 const app = electron.app;
+const ipc = electron.ipcMain;
 const expApp = require('./server/app.js');
 // report crashes to the Electron project
 require('crash-reporter').start();
@@ -45,3 +46,16 @@ app.on('activate', () => {
 app.on('ready', () => {
 	mainWindow = createMainWindow();
 });
+
+var fullscreen = false;
+
+ipc.on('toggle-full-screen', function() {
+  if(fullscreen == false) {
+    fullscreen = true;
+    mainWindow.setFullScreen(true);
+  } else {
+    fullscreen = false;
+    mainWindow.setFullScreen(false);
+    mainWindow.show();
+  }
+})

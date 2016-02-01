@@ -71,7 +71,9 @@
     "run-sequence": "^1.1.5",
     "socket.io": "^1.4.5",
     "video-name-parser": "^1.0.1",
-    "walk": "^2.3.9"
+    "walk": "^2.3.9",
+    "wcjs-prebuilt": "^2.0.8",
+    "wcjs-renderer": "^0.1.10"
   },
   "devDependencies": {
     "electron-packager": "^5.0.0",

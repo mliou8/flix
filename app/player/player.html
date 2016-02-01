@@ -1,0 +1,73 @@
+<!--
+body needs to have margin/padding set to 0;
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  #container {
+    position: relative;
+  }
+  #container canvas, #overlay {
+    position: absolute;
+  }
+  canvas {
+    border: 1px solid black;
+  }
+  #controls {
+    width: 100vw;
+    margin-top: 96vh;
+    border: 5px solid white;
+  }
+  #playbutton {
+    text-align: left;
+  }
+  #seeker {
+    text-align: center;
+  }
+  #fullscreen {
+    text-align: right;
+  }
+  #back {
+    margin: 10px 0 0 10px;
+  }
+-->
+
+<div id="container">
+  <canvas id="canvas" style="width: 100vw; height: 100vh;"></canvas>
+  <div id="overlay">
+    <button onclick="" id="back" type="button"><span class="glyphicon glyphicon-circle-arrow-left"></span></button>
+    <div id="controls">
+      <button onclick="player.togglePause()" id="playbutton" type="button"><span class="glyphicon glyphicon-play"></span></button>
+      <button onclick="player.toggleMute()" type="button"><span class="glyphicon glyphicon-volume-off"></span></button>
+      <button onclick="ipc.send('toggle-full-screen')" type="button"><span class="glyphicon glyphicon-fullscreen"></span></button>
+    </div>
+  </div>
+</div>
+<script>
+  var wcjs = require("wcjs-renderer");
+  var ipc = require('electron').ipcRenderer;
+  var player = wcjs.init(document.getElementById("canvas"));
+  player.play("https://echidna.seedboxes.cc/rogueone/MuppetChristmasCarol.mp4");
+  player.time = 1000000;
+  var formatTime = function (secs) {
+    var hours = (secs / 3600) | 0
+    var mins = ((secs - hours * 3600) / 60) | 0
+    secs = (secs - (3600 * hours + 60 * mins)) | 0
+    if (mins < 10) mins = '0' + mins
+    if (secs < 10) secs = '0' + secs
+    return (hours ? hours + ':' : '') + mins + ':' + secs
+  }
+
+  var updateInterval;
+  ipc.on('metadata', function () {
+
+    $('#controls-main')[0].style.display = 'block'
+    $('#controls-time-total')[0].innerText = formatTime(media.duration)
+    $('#controls-time-current')[0].innerText = formatTime(media.time())
+
+    clearInterval(updateInterval)
+    updateInterval = setInterval(function () {
+      $('#controls-timeline-position')[0].style.width = (100 * (media.time() / media.duration)) + '%'
+      $('#controls-time-current')[0].innerText = formatTime(media.time())
+    }, 250)
+  })
+
+</script>
