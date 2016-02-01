@@ -1,6 +1,5 @@
 var app = angular.module('main', ['ui.router, js-data']);
 console.log('inside app.js');
-const app = angular.module('shafreeky', ['js-data']);
 
 app.config(function(DSProvider, DSLocalStorageAdapterProvider) {
   DSLocalStorageAdapterProvider.defaults.basePath = '~/Library/Application Support/Shafreeky';
