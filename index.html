@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Shafulu</title>
-		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="public/style.css">
 		<script src="./node_modules/angular/angular.min.js"></script>
   	<script src="./node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 		<script src="./node_modules/js-data/dist/js-data.min.js"></script>
@@ -13,34 +13,10 @@
 	<body ng-app="main">
 		<div class="container">
 			<header>
-				<h1>Shafulu</h1>
+				<h1 class="brand">Shafulu</h1>
 			</header>
 			<section class="main">
-
-			<!-- Michael's experiment with file explorer -->
-			 <div class="container">
-			        <!-- <div class="top-border"></div> -->
-			        <div id="sidebar">
-			        </div>
-			        <div id="main-container">
-			            <div id="main-header">
-			                <header>
-			                    <div id="dir">
-			                        <h3 id="dirName">User</h3></div>
-			                    <div id="back"></div>
-			                </header>
-			                <div id="table-header">
-			                    <div class="table-header-items">Name</div>
-			                    <div class="table-header-items">Size</div>
-			                    <div class="table-header-items">Type</div>
-			                    <div class="table-header-items">Date modified</div>
-			                </div>
-			            </div>
-			            <div id="files-container">
-			            </div>
-			        </div>
-			 </div>
-
+				<ui-view></ui-view>
 			</section>
 			<footer>MMMS &copy 2016</footer>
 		</div>

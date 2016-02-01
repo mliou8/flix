@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.brand{
+  display: inline-block;
+  border: none;
+  font: normal 48px/normal "Warnes", Helvetica, sans-serif;
+  color: rgba(255,255,255,1);
+  text-decoration: normal;
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #089de3 , 0 0 70px #089de3 , 0 0 80px #089de3 , 0 0 100px #089de3 ;
+  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+body {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-image: url("./images/stars.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: 1000;
+}
+
+@import 'dashboard/main';
