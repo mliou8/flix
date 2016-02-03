@@ -52,5 +52,3 @@ app.on('ready', () => {
 	mainWindow = createMainWindow();
 	mainWindow.openDevTools();
 });
-
-module.exports = db;

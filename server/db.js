@@ -1,6 +1,5 @@
 // var Promise = require('bluebird');
 // var omdb = Promise.promisifyAll(require('omdb'));
-// var db = require()
 //
 // function findOmdb (name) {
 //   return omdb.searchAsync(name)
@@ -11,7 +10,7 @@
 //     }
 //   })
 // };
-//
+// //
 // module.exports = {
 //   createOne: function (title) {
 //     return findOmdb(title)

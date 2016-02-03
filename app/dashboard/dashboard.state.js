@@ -1,17 +1,12 @@
 angApp.config(function($stateProvider){
   $stateProvider.state('dashboardState', {
-<<<<<<< HEAD
     url: '/',
     templateUrl: './app/dashboard/dashboard.html',
     controller: 'DashboardCtrl',
     resolve: {
-      show: function(Cache) {
-        return Cache.getAll();
+      initialize: function(Storage) {
+        return Storage.init();
       }
     }
-=======
-    url: '/test',
-    templateUrl: './app/dashboard/dashboard.html'
->>>>>>> master
   })
 })
