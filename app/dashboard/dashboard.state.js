@@ -1,6 +1,12 @@
-app.config(function($stateProvider){
+angApp.config(function($stateProvider){
   $stateProvider.state('dashboardState', {
-    url: '/test',
-    templateUrl: './app/dashboard/dashboard.html'
+    url: '/',
+    templateUrl: './app/dashboard/dashboard.html',
+    controller: 'DashboardCtrl',
+    resolve: {
+      initialize: function(Storage) {
+        return Storage.init();
+      }
+    }
   })
 })

@@ -1,4 +1,4 @@
-app.controller('ExplorerCtrl', function($scope, $element, vidConstants) {
+angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants) {
   // Code to make the 'file holder div' take in
   // file path names
   var homedir = (process.platform === 'win32') ? process.env.HOMEPATH :
@@ -55,7 +55,7 @@ app.controller('ExplorerCtrl', function($scope, $element, vidConstants) {
 });
 
 
-app.factory('vidConstants', function() {
+angApp.factory('vidConstants', function() {
   return {
     vidExtensions: ['.mkv', '.avi', '.mov', '.gifv', '.flv']
   }
