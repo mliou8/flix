@@ -6,37 +6,38 @@ var loki = require('lokijs'),
 
 
 angApp.factory('Storage', function($rootScope) {
-  function findOmdb(name) {
-  	console.log('in omdb function', name);
-  	return omdb.searchAsync(name)
-  		.then(function(results) {
-  			if (results.length < 1) return;
-  			if (results.length >= 1) {
-  				return omdb.getAsync(results[0].imdb);
-  			}
-  		})
-  };
-  function addMedia(mediaTitle) {
-    var self = this;
-    console.log(self);
-    return new Promise(function(resolve, reject) {
-      console.log(self);
-      findOmdb(mediaTitle)
-      .then(function(metadata) {
-        var media = {};
-        media = metadata;
-        media._id = metadata.imdb.id;
-        self.collection.insert(media);
-        console.log(media);
-        self.db.saveDatabase();
-      })
-      .then(function() {
-        resolve(self);
-      }, function (err) {
-        reject(err);
-      });
-    })
-  };
+	function findOmdb(name) {
+		console.log('in omdb function', name);
+		return omdb.searchAsync(name)
+			.then(function(results) {
+				if (results.length < 1) return;
+				if (results.length >= 1) {
+					return omdb.getAsync(results[0].imdb);
+				}
+			})
+	};
+	//Not being used anymore
+	function addMedia(mediaTitle) {
+		var self = this;
+		console.log(self);
+		return new Promise(function(resolve, reject) {
+			console.log(self);
+			findOmdb(mediaTitle)
+				.then(function(metadata) {
+					var media = {};
+					media = metadata;
+					media._id = metadata.imdb.id;
+					self.collection.insert(media);
+					console.log(media);
+					self.db.saveDatabase();
+				})
+				.then(function() {
+					resolve(self);
+				}, function(err) {
+					reject(err);
+				});
+		})
+	};
 
 	return {
 		db: new loki(path.resolve(__dirname, 'app.db')),
@@ -74,38 +75,46 @@ angApp.factory('Storage', function($rootScope) {
 			var self = this;
 			return new Promise(function(resolve, reject) {
 				if (self.loaded && self.db.getCollection('media')) {
-          return resolve(self.collection.find({"_id": mediaId}));
+					return resolve(self.collection.find({
+						"_id": mediaId
+					}));
 				} else {
 					reject(new Error('db is not ready'));
 				}
 			})
 		},
-    addMedia: addMedia,
-    findOrCreate: function(mediaTitle) {
-      var self = this;
-      console.log('in the findOrCreate')
-      return new Promise(function(resolve, reject) {
-        if (self.loaded && self.db.getCollection('media')) {
-          findOmdb(mediaTitle)
-          .then(function(metadata) {
-            if (self.collection.find({'_id': metadata.imdb.id}).length>0) {
-              console.log(self.collection.find({'title': mediaTitle}).length);
-              return resolve(null);
-            } else {
-              console.log('creating');
-              var media = {};
-              media = metadata;
-              media._id = metadata.imdb.id;
-              self.collection.insert(media);
-              console.log(media);
-              self.db.saveDatabase();
-              resolve(self);
-            }
-          })
-        } else {
-          reject(new Error('db is not ready'));
-        }
-      });
-    }
+		//not being used either
+		addMedia: addMedia,
+		findOrCreate: function(mediaTitle) {
+			var self = this;
+			console.log('in the findOrCreate')
+			return new Promise(function(resolve, reject) {
+				if (self.loaded && self.db.getCollection('media')) {
+					findOmdb(mediaTitle)
+						.then(function(metadata) {
+							if (self.collection.find({
+									'_id': metadata.imdb.id
+								}).length > 0) {
+								console.log(self.collection.find({
+									'title': mediaTitle
+								}).length);
+								//Still need to return actual file
+								return resolve(null);
+							} else {
+								console.log('creating');
+								var media = {};
+								media = metadata;
+								media._id = metadata.imdb.id;
+								self.collection.insert(media);
+								console.log(media);
+								self.db.saveDatabase();
+								resolve(self);
+							}
+						})
+				} else {
+					reject(new Error('db is not ready'));
+				}
+			});
+		}
 	};
 });
