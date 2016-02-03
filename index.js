@@ -2,8 +2,14 @@
 const electron = require('electron');
 const app = electron.app;
 const expApp = require('./server/app.js');
+
 // report crashes to the Electron project
-require('crash-reporter').start();
+require('crash-reporter').start({
+	productName: 'ShafreekiTime',
+	companyName: 'ShafiqNFrenz',
+	submitURL: 'https://localhost:1337',
+	autoSubmit: false
+});
 
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();

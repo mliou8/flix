@@ -1,4 +1,8 @@
-app.controller('DashboardCtrl', function($scope){
+angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage, initialize){
   //code
-  console.log('inside DashboardCtrl')
+  $rootScope.$on('dbLoaded', function() {
+    console.log('initialized', Storage.findOrCreate('Rick and Morty').then(result=> console.log(result)));
+    // .then(function(result) {console.log(result)});
+  })
+
 })
