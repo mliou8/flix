@@ -28,3 +28,15 @@ body {
   -o-background-size: cover;
   background-size: cover;
   z-index: 1000; }
+
+#fileholder {
+  border: 10px dashed #ccc;
+  width: 300px;
+  height: 300px;
+  margin: 20px auto; }
+
+#fileholder.hover {
+  border: 10px dashed #333; }
+
+body {
+  color: white; }
