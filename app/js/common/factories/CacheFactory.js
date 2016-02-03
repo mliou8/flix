@@ -1,5 +1,6 @@
-var db = require(__dirname+"/server/db.js");
+var db = require('lokijs'),
+  path = require('path');
 
-app.factory('Cache', function() {
+angApp.factory('Cache', function() {
   return db;
 });

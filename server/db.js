@@ -1,14 +1,6 @@
 var Promise = require('bluebird');
 var omdb = Promise.promisifyAll(require('omdb'));
-var jsondbfs = Promise.promisifyAll(require('jsondbfs'));
-var db;
-
-
- // receives an array containing the collections you want to create / use ['Users', 'Others']
- // existing collections will be attached
-jsondbfs.connect(['Media'], {path: './', driver: 'memory',  memory: {flush: true, flushInterval: 10000}}, function(err, database) {
-  db = database;
-});
+var db = require()
 
 function findOmdb (name) {
   return omdb.searchAsync(name)
@@ -34,13 +26,15 @@ module.exports = {
     })
   },
   getAll: function() {
+    console.log('db shits', db);
     return db.Media.find(function(err, docs) {
       console.log(docs);
       return docs;
     });
   },
   getOne: function(id) {
-    console.log(id);
+    console.log('logging id', id);
+    console.log('logging db media', db);
     return db.Media.findOne({"imdbId": id}, function(err, doc) {
       console.log(doc);
       console.log(err);

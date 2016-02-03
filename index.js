@@ -2,6 +2,9 @@
 const electron = require('electron');
 const app = electron.app;
 const expApp = require('./server/app.js');
+const jsondbfs = require('jsondbfs');
+var db;
+
 // report crashes to the Electron project
 require('crash-reporter').start({
 	productName: 'ShafreekiTime',
@@ -49,4 +52,7 @@ app.on('activate', () => {
 
 app.on('ready', () => {
 	mainWindow = createMainWindow();
+	mainWindow.openDevTools();
 });
+
+module.exports = db;
