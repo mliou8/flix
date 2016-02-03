@@ -1,4 +1,4 @@
-app.controller('SidebarCtrl', function($scope) {
+angApp.controller('SidebarCtrl', function($scope) {
 
   //Leftover attempts to make sidebar toggleable
   // $scope.menuActive = false;
