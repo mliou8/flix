@@ -1,6 +1,6 @@
 app.directive('sidebar', function() {
   return {
     restrict: 'E',
-    templateUrl: './app/directives/sidebar/index.html'
+    templateUrl: './app/js/directives/sidebar/sidebar.html'
   };
 });
