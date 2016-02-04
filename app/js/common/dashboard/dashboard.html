@@ -1,6 +1,6 @@
-<div id="dashboardBackground">
-hello world
-
-{{show.title}}
-
+<div>
+	<ul>
+    <p>Movies/Shows</p>
+		<li ng-repeat="media in allMedia track by $index">{{media.title}}</li>
+	</ul>
 </div>
