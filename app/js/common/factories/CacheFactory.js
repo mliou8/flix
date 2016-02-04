@@ -2,7 +2,8 @@
 var loki = require('lokijs'),
 	path = require('path'),
 	Promise = require('bluebird'),
-	omdb = Promise.promisifyAll(require('omdb'));
+	omdb = Promise.promisifyAll(require('omdb')),
+	_ = require('lodash');
 
 
 angApp.factory('Storage', function($rootScope) {
@@ -85,26 +86,36 @@ angApp.factory('Storage', function($rootScope) {
 				}
 			})
 		},
-		findOrCreate: function(mediaTitle, seasons) {
+		//not being used either
+		addMedia: addMedia,
+		findOrCreate: function(mediaObj) {
 			var self = this;
+			console.log('in the findOrCreate', mediaObj)
 			return new Promise(function(resolve, reject) {
 				if (self.loaded && self.db.getCollection('media')) {
-					findOmdb(mediaTitle)
+					findOmdb(mediaObj)
 						.then(function(metadata) {
 							if (self.collection.find({
 									'_id': metadata.imdb.id
 								}).length > 0) {
-								console.log(self.collection.find({
-									'title': mediaTitle
-								}).length);
+									var media = self.collection.findOne({'_id': metadata.imdb.id})
+									console.log(Object.keys(mediaObj.seasons));
+									Object.keys(mediaObj.seasons).forEach(function(key) {
+										if (media.seasons[key]) {
+											media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[key], 'num');
+										} else {
+											media.seasons[key] = mediaObj.seasons[key];
+										}
+									})
+									self.db.saveDatabase();
+									resolve(self);
 								//Still need to return actual file
-								return resolve(null);
 							} else {
 								console.log('creating');
 								var media = {};
 								media = metadata;
 								media._id = metadata.imdb.id;
-								media.seasons = seasons;
+								media.seasons = mediaObj.seasons;
 								self.collection.insert(media);
 								console.log(media);
 								self.db.saveDatabase();

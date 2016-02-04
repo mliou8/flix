@@ -16,6 +16,7 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
   var path = require('path');
   var find = require('findit');
   var parseVideo = require('video-name-parser');
+  var _ = require('lodash');
 
   //Button called "browse", opens homedirectory of user
   $scope.openHome = function() {
@@ -54,19 +55,32 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
         }
       })
       finder.on('end', function(file, stat) {
-
+        var mediaArr = [];
         soln.forEach(function(eachFile) {
-          var mediaObj = {
-            terms: eachFile.name,
-            year: eachFile.year,
-            season: eachFile.season,
-            episode: eachFile.episode
+          var matchingItem = _.find(mediaArr, {terms: eachFile.name});
+          if (matchingItem) {
+            if (!matchingItem.seasons[eachFile.season]) matchingItem.seasons[eachFile.season] = [{num:eachFile.episode[0], path: eachFile.filePath, timestamp: 0}]
+            else matchingItem.seasons[eachFile.season].push({num:eachFile.episode[0], path: eachFile.filePath, timestamp:0})
+          } else {
+            var mediaObj = {
+              terms: eachFile.name,
+              year: eachFile.year,
+              seasons: {}
+            }
+            mediaObj.seasons[eachFile.season] = [];
+            mediaObj.seasons[eachFile.season].push({num:eachFile.episode[0], path: eachFile.filePath, timestamp: 0})
+            mediaArr.push(mediaObj);
           }
-          console.log('before find or create')
-          Storage.findOrCreate(mediaObj).then(result =>
-            console.log(result))
-        })
-        $state.go('dashboardState')
+        });
+        mediaArr.forEach(function(eachRecord){
+          Storage.findOrCreate(eachRecord)
+          .then(created => console.log(created));
+        });
+        Storage.findAllMedia()
+          .then(function(allMedia) {
+            console.log("ALL MEDIA", allMedia);
+          })
+        console.log('soln', soln)
       })
     })
     return false;
