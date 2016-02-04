@@ -1,13 +1,7 @@
 angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
-  Storage, initialize, $rootScope) {
+  Storage, initialize, $rootScope, $state) {
   // Code to make the 'file holder div' take in
   // file path names
-
-  // $rootScope.$on('dbLoaded', function() {
-  //   console.log('initialized', Storage.findOrCreate(soln.name).then(result=> console.log(result)));
-  //   // .then(function(result) {console.log(result)});
-  // })
-
   var homedir = (process.platform === 'win32') ? process.env.HOMEPATH :
     process.env.HOME;
   const shell = require('electron').shell;
@@ -67,11 +61,7 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
           Storage.findOrCreate(mediaObj).then(result =>
             console.log(result))
         })
-        Storage.findAllMedia()
-          .then(function(allMedia) {
-            console.log("ALL MEDIA", allMedia);
-          })
-        console.log('soln', soln)
+        $state.go('dashboardState')
       })
     })
     return false;
