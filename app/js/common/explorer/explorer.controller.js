@@ -19,7 +19,6 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
   // --------------------------
   // Code that allows you to recurse through the directories
   //provided and return file names that end with certain exts
-
   var holder = document.getElementById('fileholder');
   holder.ondragover = function() {
     this.className = 'hover';
@@ -40,14 +39,12 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
       var finder = find(data);
       finder.on('file', function(file, stat) {
         var mediaName = file.split("/").pop()
-        console.log(mediaName)
         if (vidConstants.vidExtensions.indexOf(path.extname(file)) !==
           -1) {
           var parsed = parseVideo(mediaName);
           parsed.filePath = file
           soln.push(parsed);
         }
-        console.log("Thank you for your patience!");
       })
       finder.on('end', function(file, stat) {
 
