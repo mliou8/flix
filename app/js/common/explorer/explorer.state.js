@@ -5,7 +5,7 @@ angApp.config(function($stateProvider){
     controller: 'ExplorerCtrl',
     resolve: {
       initialize: function(Storage) {
-        return Storage.init();
+        return Storage.init()
       }
     }
   })

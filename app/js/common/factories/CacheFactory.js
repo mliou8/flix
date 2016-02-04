@@ -7,7 +7,6 @@ var loki = require('lokijs'),
 
 angApp.factory('Storage', function($rootScope) {
 	function findOmdb(name) {
-		console.log('in omdb function', name);
 		return omdb.searchAsync(name)
 			.then(function(results) {
 				if (results.length < 1) return;
@@ -19,16 +18,13 @@ angApp.factory('Storage', function($rootScope) {
 	//Not being used anymore
 	function addMedia(mediaTitle) {
 		var self = this;
-		console.log(self);
 		return new Promise(function(resolve, reject) {
-			console.log(self);
 			findOmdb(mediaTitle)
 				.then(function(metadata) {
 					var media = {};
 					media = metadata;
 					media._id = metadata.imdb.id;
 					self.collection.insert(media);
-					console.log(media);
 					self.db.saveDatabase();
 				})
 				.then(function() {
@@ -60,15 +56,11 @@ angApp.factory('Storage', function($rootScope) {
 						}
 					})
 					.then(function() {
-						console.log('in the factory', self);
 						$rootScope.$emit('dbLoaded');
 					})
 					.then(null, function(err) {
 						console.log(err)
 					})
-					// .catch(function(err) {
-					// 	console.log(err);
-					// })
 			})
 		},
 		findMedia: function(mediaId) {
@@ -93,11 +85,8 @@ angApp.factory('Storage', function($rootScope) {
 				}
 			})
 		},
-		//not being used either
-		addMedia: addMedia,
 		findOrCreate: function(mediaTitle, seasons) {
 			var self = this;
-			console.log('in the findOrCreate')
 			return new Promise(function(resolve, reject) {
 				if (self.loaded && self.db.getCollection('media')) {
 					findOmdb(mediaTitle)

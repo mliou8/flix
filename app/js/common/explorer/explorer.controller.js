@@ -1,5 +1,5 @@
 angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
-  Storage, initialize, $rootScope) {
+  Storage, initialize, $rootScope, $state) {
   // Code to make the 'file holder div' take in
   // file path names
 
@@ -46,32 +46,27 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
       var finder = find(data);
       finder.on('file', function(file, stat) {
         var mediaName = file.split("/").pop()
-        console.log(mediaName)
         if (vidConstants.vidExtensions.indexOf(path.extname(file)) !==
           -1) {
           var parsed = parseVideo(mediaName);
           parsed.filePath = file
           soln.push(parsed);
         }
-        console.log("Thank you for your patience!");
       })
       finder.on('end', function(file, stat) {
 
         soln.forEach(function(eachFile) {
           var mediaObj = {
-            title: eachFile.name,
+            terms: eachFile.name,
             year: eachFile.year,
             season: eachFile.season,
             episode: eachFile.episode
           }
+          console.log('before find or create')
           Storage.findOrCreate(mediaObj).then(result =>
             console.log(result))
         })
-        Storage.findAllMedia()
-          .then(function(allMedia) {
-            console.log("ALL MEDIA", allMedia);
-          })
-        console.log('soln', soln)
+        $state.go('dashboardState')
       })
     })
     return false;
