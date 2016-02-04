@@ -37,33 +37,6 @@ angApp.factory('Storage', function($rootScope) {
 	};
 
 	return {
-		db: new loki(path.resolve(__dirname, 'app.db')),
-		collection: null,
-		loaded: false,
-		init: function() {
-			var self = this;
-			self.db.loadDatabase({}, function() {
-				return new Promise(function(resolve, reject) {
-						if (self.db.collections.length) {
-							self.collection = self.db.getCollection('media');
-							self.loaded = true;
-							return resolve(self);
-						} else {
-							self.db.addCollection('media');
-							self.db.saveDatabase();
-							self.collection = self.db.getCollection('media');
-							self.loaded = true;
-							return resolve(self)
-						}
-					})
-					.then(function() {
-						$rootScope.$emit('dbLoaded');
-					})
-					.then(null, function(err) {
-						console.log(err)
-					})
-			})
-		},
 		findMedia: function(mediaId) {
 			var self = this;
 			return new Promise(function(resolve, reject) {
@@ -99,7 +72,8 @@ angApp.factory('Storage', function($rootScope) {
 									'_id': metadata.imdb.id
 								}).length > 0) {
 									var media = self.collection.findOne({'_id': metadata.imdb.id})
-									console.log(Object.keys(mediaObj.seasons));
+									console.log('this is series',media.type, media.title)
+									if(media.type === 'series'){
 									Object.keys(mediaObj.seasons).forEach(function(key) {
 										if (media.seasons[key]) {
 											media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[key], 'num');
@@ -107,6 +81,7 @@ angApp.factory('Storage', function($rootScope) {
 											media.seasons[key] = mediaObj.seasons[key];
 										}
 									})
+								}
 									self.db.saveDatabase();
 									resolve(self);
 								//Still need to return actual file

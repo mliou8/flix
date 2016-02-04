@@ -1,5 +1,6 @@
 <div>
-  <ul>
-  <li ng-repeat="media in allMedia">{{media.title}}</li>
-</ul>
+	<ul>
+    <p>Movies/Shows</p>
+		<li ng-repeat="media in allMedia track by $index">{{media.title}}</li>
+	</ul>
 </div>
