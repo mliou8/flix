@@ -2,6 +2,12 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
   Storage, initialize, $rootScope, $state) {
   // Code to make the 'file holder div' take in
   // file path names
+
+  // $rootScope.$on('dbLoaded', function() {
+  //   console.log('initialized', Storage.findOrCreate(soln.name).then(result=> console.log(result)));
+  //   // .then(function(result) {console.log(result)});
+  // })
+
   var homedir = (process.platform === 'win32') ? process.env.HOMEPATH :
     process.env.HOME;
   const shell = require('electron').shell;
@@ -19,6 +25,7 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
   // --------------------------
   // Code that allows you to recurse through the directories
   //provided and return file names that end with certain exts
+
   var holder = document.getElementById('fileholder');
   holder.ondragover = function() {
     this.className = 'hover';
@@ -50,11 +57,12 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
 
         soln.forEach(function(eachFile) {
           var mediaObj = {
-            title: eachFile.name,
+            terms: eachFile.name,
             year: eachFile.year,
             season: eachFile.season,
             episode: eachFile.episode
           }
+          console.log('before find or create')
           Storage.findOrCreate(mediaObj).then(result =>
             console.log(result))
         })
