@@ -85,7 +85,7 @@ angApp.factory('Storage', function($rootScope) {
 		},
 		//not being used either
 		addMedia: addMedia,
-		findOrCreate: function(mediaTitle) {
+		findOrCreate: function(mediaTitle, seasons) {
 			var self = this;
 			console.log('in the findOrCreate')
 			return new Promise(function(resolve, reject) {
@@ -105,6 +105,7 @@ angApp.factory('Storage', function($rootScope) {
 								var media = {};
 								media = metadata;
 								media._id = metadata.imdb.id;
+								media.seasons = seasons;
 								self.collection.insert(media);
 								console.log(media);
 								self.db.saveDatabase();
@@ -115,6 +116,26 @@ angApp.factory('Storage', function($rootScope) {
 					reject(new Error('db is not ready'));
 				}
 			});
-		}
+		},
+		updateTimestamp: function(mediaTitle, season, episode, newTimestamp) {
+			return new Promise(function(resolve, reject) {
+					if (self.loaded && self.db.getCollection('media')) {
+						findOmdb(mediaTitle)
+							.then(function(metadata) {
+									if (self.collection.find({
+											'_id': metadata.imdb.id
+										})) {
+										var updating = self.collection.findOne({
+											'_id': metadata.imdb.id
+										})
+										updating.seasons[season][episode].timestamp = newTimestamp;
+										resolve(self.collection.update(updating));
+									} else {
+										reject(new Error('media not found'));
+									}
+							})
+						}
+					})
+			}
 	};
 });
