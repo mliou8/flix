@@ -83,6 +83,16 @@ angApp.factory('Storage', function($rootScope) {
 				}
 			})
 		},
+		findAllMedia: function() {
+			var self = this;
+			return new Promise(function(resolve, reject) {
+				if (self.loaded && self.db.getCollection('media')) {
+					return resolve(self.collection.find({}))
+				} else {
+					reject(new Error('hahahaha'));
+				}
+			})
+		},
 		//not being used either
 		addMedia: addMedia,
 		findOrCreate: function(mediaTitle, seasons) {
@@ -119,23 +129,23 @@ angApp.factory('Storage', function($rootScope) {
 		},
 		updateTimestamp: function(mediaTitle, season, episode, newTimestamp) {
 			return new Promise(function(resolve, reject) {
-					if (self.loaded && self.db.getCollection('media')) {
-						findOmdb(mediaTitle)
-							.then(function(metadata) {
-									if (self.collection.find({
-											'_id': metadata.imdb.id
-										})) {
-										var updating = self.collection.findOne({
-											'_id': metadata.imdb.id
-										})
-										updating.seasons[season][episode].timestamp = newTimestamp;
-										resolve(self.collection.update(updating));
-									} else {
-										reject(new Error('media not found'));
-									}
-							})
-						}
-					})
-			}
+				if (self.loaded && self.db.getCollection('media')) {
+					findOmdb(mediaTitle)
+						.then(function(metadata) {
+							if (self.collection.find({
+									'_id': metadata.imdb.id
+								})) {
+								var updating = self.collection.findOne({
+									'_id': metadata.imdb.id
+								})
+								updating.seasons[season][episode].timestamp = newTimestamp;
+								resolve(self.collection.update(updating));
+							} else {
+								reject(new Error('media not found'));
+							}
+						})
+				}
+			})
+		}
 	};
 });
