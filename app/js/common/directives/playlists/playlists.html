@@ -11,13 +11,13 @@
               {{playlist}}
             </li>
           </span>
-          <span ng-repeat = "playlist in newInputs">
+          <span ng-show="showForm">
             <li>
-              {{playlist}}
+                <input type="text" placeholder="Playlist Name" ng-enter="createPlaylist()"ng-model="name">
             </li>
           </span>
             <li>
-              <button ng-click="addNewPlaylist()"> + Add New Playlist </button>
+              <button ng-hide="showForm" ng-click="addNewForm()"> + Add New Playlist </button>
             </li>
         </ul>
     </div>
