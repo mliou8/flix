@@ -137,3 +137,9 @@ body {
   #wrapper.toggled #page-content-wrapper {
     position: relative;
     margin-right: 0; } }
+
+input[type="text"] {
+  color: black; }
+
+button {
+  color: black; }

@@ -8,7 +8,4 @@ angApp.controller('SidebarCtrl', function($scope) {
   //   $scope.menuActive = !$scope.menuActive;
   //}
 
-  //placeholder for making new playlists
-
-
 })
