@@ -44,9 +44,11 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants, Stora
     dataPathArray.forEach(function(data) {
       var finder = find(data);
       finder.on('file', function(file, stat) {
+        var mediaName = file.split("/").pop()
+        console.log(mediaName)
         if (vidConstants.vidExtensions.indexOf(path.extname(file)) !==
           -1) {
-          var parsed = parseVideo(file);
+          var parsed = parseVideo(mediaName);
           parsed.filePath = file
           soln.push(parsed);
         }
