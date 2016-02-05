@@ -1,7 +1,8 @@
 <div>
 	<ul>
-    <h1><a ui-sref="playerState({data: mediaData._id})">{{mediaData.title}}</a></h1>
-    <p>{{mediaData.plot}}</p>
-    <img src="{{mediaData.poster}}">
+		<h1><a ui-sref="playerState({data: mediaData._id})">{{mediaData.title}}</a></h1>
+		<p>{{mediaData.plot}}</p>
+		<img src="{{mediaData.poster}}">
+		<span ng-if="series" ng-repeat="season in seasons">{{season}}<span ng-repeat="episode in season">{{episode.num}}</span></span>
 	</ul>
 </div>
