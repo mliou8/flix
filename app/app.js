@@ -3,9 +3,12 @@ var loki = require('lokijs'),
 var angApp = angular.module('main', ['ui.router', 'lokijs']);
 
 angApp.config(function($urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
+	$urlRouterProvider.otherwise('/');
 })
 
-angApp.run(function(Storage){
+angApp.run(function($rootScope, $state, Storage) {
 	Storage.init();
+	$rootScope.$on('dbLoaded', function(){
+		$state.go('dashboardState')
+	})
 });
