@@ -86,7 +86,8 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
 					}else{
 						var mediaObj = {
 							terms: eachFile.name,
-							year: eachFile.year
+							year: eachFile.year,
+							path: eachFile.filePath
 						}
 						mediaArr.push(mediaObj);
 					}

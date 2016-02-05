@@ -1,6 +1,24 @@
 <div>
 	<ul>
-    <p>Movies/Shows</p>
-		<li ng-repeat="media in allMedia track by $index">{{media.title}}</li>
-	</ul>
+		<p>Movies/Shows</p>
+		<!-- <ul class="list-group">
+			<li class="list-group-header">
+				<input class="form-control" type="text" placeholder="Search for someone">
+			</li>
+			<li class="list-group-item" ng-repeat="media in allMedia track by $index">
+				<img class="img-circle media-object pull-left" ng-src="{{media.poster}}" width="32" height="32">
+				<div class="media-body">
+					<strong>{{media.title}}</strong>
+					<p>{{media.plot}}</p>
+				</div>
+			</li>
+		</ul> -->
+		<div class="row">
+			<div class="col-md-4" ng-repeat="media in allMedia track by $index">
+				<img class="media-object" ng-src="{{media.poster}}">
+				<div class="media-body">
+					<strong>{{media.title}}</strong>
+					<p>{{media.plot}}</p>
+			</div>
+		</div>
 </div>
