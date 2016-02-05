@@ -1,3 +1,3 @@
-angApp.controller('SingleItemCtrl', function($rootScope, $scope, singleMedia){
+angApp.controller('SingleItemCtrl', function($rootScope, $scope, singleMedia, $state){
   $scope.mediaData = singleMedia;
 })

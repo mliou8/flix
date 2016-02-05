@@ -7,7 +7,6 @@ angApp.config(function($stateProvider){
       singleMedia: function(Storage, $stateParams){
         return Storage.findMedia($stateParams.mediaId)
         .then(function(mediaData){
-          console.log('this is the mediaData',mediaData[0])
           return mediaData[0]
         });
       }

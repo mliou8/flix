@@ -1,7 +1,15 @@
 angApp.config(function($stateProvider){
   $stateProvider.state('playerState', {
-    url: '/player',
+    url: '/player/:data',
     templateUrl: './app/js/common/player/player.html',
-    controller: 'PlayerCtrl'
+    controller: 'PlayerCtrl',
+    resolve: {
+      media: function($stateParams, Storage){
+        return Storage.findMedia($stateParams.data)
+        .then(function(mediaData){
+          return mediaData[0]
+        });
+      }
+    }
   })
 })
