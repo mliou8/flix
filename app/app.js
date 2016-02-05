@@ -20,5 +20,4 @@ angApp.run(function(Storage){
     Storage.collection = Storage.db.getCollection('media');
     Storage.loaded = true;
   }
-  console.log('loading is done')
 })

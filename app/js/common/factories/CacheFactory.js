@@ -63,7 +63,6 @@ angApp.factory('Storage', function($rootScope) {
 		addMedia: addMedia,
 		findOrCreate: function(mediaObj) {
 			var self = this;
-			console.log('in the findOrCreate', mediaObj)
 			return new Promise(function(resolve, reject) {
 				if (self.loaded && self.db.getCollection('media')) {
 					findOmdb(mediaObj)
@@ -72,7 +71,6 @@ angApp.factory('Storage', function($rootScope) {
 									'_id': metadata.imdb.id
 								}).length > 0) {
 									var media = self.collection.findOne({'_id': metadata.imdb.id})
-									console.log('this is series',media.type, media.title)
 									if(media.type === 'series'){
 									Object.keys(mediaObj.seasons).forEach(function(key) {
 										if (media.seasons[key]) {
@@ -86,13 +84,11 @@ angApp.factory('Storage', function($rootScope) {
 									resolve(self);
 								//Still need to return actual file
 							} else {
-								console.log('creating');
 								var media = {};
 								media = metadata;
 								media._id = metadata.imdb.id;
 								media.seasons = mediaObj.seasons;
 								self.collection.insert(media);
-								console.log(media);
 								self.db.saveDatabase();
 								resolve(self);
 							}
