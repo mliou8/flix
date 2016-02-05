@@ -1,6 +1,6 @@
 <div>
 	<ul>
     <p>Movies/Shows</p>
-		<a ui-sref="singleItemState"><li ng-repeat="media in allMedia track by $index">{{media.title}}</li></a>
+		<li ng-repeat="media in allMedia track by $index"><a ui-sref="singleItemState({mediaId: media._id})">{{media.title}}</a></li>
 	</ul>
 </div>

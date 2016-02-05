@@ -56,7 +56,6 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
 					var matchingItem = _.find(mediaArr, {
 						terms: eachFile.name
 					});
-					console.log(eachFile.type, eachFile.name)
 					if (eachFile.type === 'series') {
 						if (matchingItem) {
 							if (!matchingItem.seasons[eachFile.season]) matchingItem.seasons[eachFile.season] = [{
