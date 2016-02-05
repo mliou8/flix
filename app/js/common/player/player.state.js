@@ -5,10 +5,7 @@ angApp.config(function($stateProvider){
     controller: 'PlayerCtrl',
     resolve: {
       media: function($stateParams, Storage){
-        return Storage.findMedia($stateParams.data)
-        .then(function(mediaData){
-          return mediaData[0]
-        });
+        return Storage.db.getCollection("media").findOne({_id:$stateParams.data})
       }
     }
   })
