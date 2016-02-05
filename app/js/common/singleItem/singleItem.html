@@ -1,6 +1,6 @@
 <div>
 	<ul>
-    <h1>{{mediaData.title}}</h1>
+    <h1><a ui-sref="playerState({data: mediaData._id})">{{mediaData.title}}</a></h1>
     <p>{{mediaData.plot}}</p>
     <img src="{{mediaData.poster}}">
 	</ul>
