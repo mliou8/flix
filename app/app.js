@@ -1,23 +1,14 @@
 var loki = require('lokijs'),
 	path = require('path')
-var angApp = angular.module('main', ['ui.router']);
+var angApp = angular.module('main', ['ui.router', 'lokijs']);
 
 angApp.config(function($urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
+	$urlRouterProvider.otherwise('/');
 })
 
-angApp.run(function(Storage){
-  Storage.db = new loki(path.resolve(__dirname, 'app.db')),
-  Storage.collection = null
-  Storage.loaded = false
-  if (Storage.db.collections.length) {
-    Storage.collection = Storage.db.getCollection('media');
-    Storage.loaded = true;
-    return resolve(Storage);
-  } else {
-    Storage.db.addCollection('media');
-    Storage.db.saveDatabase();
-    Storage.collection = Storage.db.getCollection('media');
-    Storage.loaded = true;
-  }
-})
+angApp.run(function($rootScope, $state, Storage) {
+	Storage.init();
+	$rootScope.$on('dbLoaded', function(){
+		$state.go('dashboardState')
+	})
+});

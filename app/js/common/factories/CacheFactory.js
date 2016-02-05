@@ -17,60 +17,48 @@ angApp.factory('Storage', function($rootScope) {
 			})
 	};
 	//Not being used anymore
-	function addMedia(mediaTitle) {
-		var self = this;
-		return new Promise(function(resolve, reject) {
-			findOmdb(mediaTitle)
-				.then(function(metadata) {
-					var media = {};
-					media = metadata;
-					media._id = metadata.imdb.id;
-					self.collection.insert(media);
-					self.db.saveDatabase();
-				})
-				.then(function() {
-					resolve(self);
-				}, function(err) {
-					reject(err);
-				});
-		})
-	};
-
 	return {
-		findMedia: function(mediaId) {
+		db: new loki(path.resolve(__dirname, 'app.db')),
+		playlists: null,
+		allMedia: null,
+		loaded: false,
+		init: function () {
 			var self = this;
-			return new Promise(function(resolve, reject) {
-				if (self.loaded && self.db.getCollection('media')) {
-					return resolve(self.collection.find({
-						"_id": mediaId
-					}));
-				} else {
-					reject(new Error('db is not ready'));
-				}
+			self.db.loadDatabase({}, function () {
+				return new Promise(function (resolve, reject) {
+					if (self.db.collections.length) {
+						self.allMedia = self.db.getCollection('media');
+						self.playlists = self.db.getCollection('playlists')
+						self.loaded = true;
+						return resolve(self);
+					} else {
+						self.db.addCollection('media');
+						self.db.addCollection('playlists');
+						self.db.saveDatabase();
+						self.allMedia = self.db.getCollection('media');
+						self.playlists = self.db.getCollection('playlists');
+						self.loaded = true;
+						return resolve(self)
+					}
+				})
+				.then(function () {
+						$rootScope.$emit('dbLoaded');
+					})
+				.catch(function (err) {
+						console.log(err);
+					})
 			})
 		},
-		findAllMedia: function() {
-			var self = this;
-			return new Promise(function(resolve, reject) {
-				if (self.loaded && self.db.getCollection('media')) {
-					return resolve(self.collection.find({}))
-				} else {
-					reject(new Error('hahahaha'));
-				}
-			})
-		},
-		//not being used either
-		addMedia: addMedia,
 		findOrCreate: function(mediaObj) {
 			var self = this;
 			return new Promise(function(resolve, reject) {
 				if (self.loaded && self.db.getCollection('media')) {
 					findOmdb(mediaObj)
 						.then(function(metadata) {
-							if (self.collection.find({
+							if (self.db.getCollection('media').find({
 									'_id': metadata.imdb.id
 								}).length > 0) {
-									var media = self.collection.findOne({'_id': metadata.imdb.id})
+									var media = self.db.getCollection('media').findOne({'_id': metadata.imdb.id})
 									if(media.type === 'series'){
 									Object.keys(mediaObj.seasons).forEach(function(key) {
 										if (media.seasons[key]) {
@@ -87,8 +75,10 @@ angApp.factory('Storage', function($rootScope) {
 								var media = {};
 								media = metadata;
 								media._id = metadata.imdb.id;
-								media.seasons = mediaObj.seasons;
-								self.collection.insert(media);
+								if (media.type === 'series') media.seasons = mediaObj.seasons;
+								if (media.type === 'movie') media.path = mediaObj.path;
+								self.db.getCollection('media').insert(media);
+								console.log(media);
 								self.db.saveDatabase();
 								resolve(self);
 							}
@@ -103,14 +93,14 @@ angApp.factory('Storage', function($rootScope) {
 				if (self.loaded && self.db.getCollection('media')) {
 					findOmdb(mediaTitle)
 						.then(function(metadata) {
-							if (self.collection.find({
+							if (self.media.find({
 									'_id': metadata.imdb.id
 								})) {
-								var updating = self.collection.findOne({
+								var updating = self.media.findOne({
 									'_id': metadata.imdb.id
 								})
 								updating.seasons[season][episode].timestamp = newTimestamp;
-								resolve(self.collection.update(updating));
+								resolve(self.media.update(updating));
 							} else {
 								reject(new Error('media not found'));
 							}
