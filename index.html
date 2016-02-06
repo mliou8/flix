@@ -3,40 +3,36 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Shafulu</title>
+	<title>Flixie</title>
 	<link rel="stylesheet" href="public/style.css">
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<script src="./node_modules/angular/angular.min.js"></script>
 	<script src="./node_modules/lokijs/src/loki-angular.js"></script>
 	<script src="./node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="./node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
 
 	<script src="public/main.js"></script>
-	<!-- Apparently this is how you set a stylesheet link in electron -->
-	<script>
-		var link = document.createElement('link')
-		link.setAttribute('rel', 'stylesheet')
-		link.setAttribute('href', require('path').join(__dirname, 'app', 'css', 'photon', 'photon.min.css'));
-		document.head.appendChild(link)
-	</script>
+
 </head>
 
 <body ng-app="main">
 
-	<div class="container">
+	<div class="container-fluid">
 		<header>
-			<h1 class="brand">Shafulu</h1>
+			<h1 class="brand">Flixie</h1>
 		</header>
 		<section class="main">
-			<div class="col-xs-2" ng-controller="NavCtrl">
-				<span ng-hide="showPlaylists"> <sidebar > </sidebar> </span>
-				<span ng-show="showPlaylists"> <playlists> </playlists> </span>
+			<div class="col-xs-2">
+				<sidebar> </sidebar>
+				<span ng-show="showPlaylists"><playlists></playlists></span>
 			</div>
 			<div class="col-xs-10">
 				<ui-view></ui-view>
 			</div>
 		</section>
-		<footer>MMMS &copy 2016</footer>
+		<footer></footer>
 	</div>
 </body>
+
 
 </html>

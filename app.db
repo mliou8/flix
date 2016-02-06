@@ -3,6 +3,72 @@
 	"collections": [{
 		"name": "media",
 		"data": [{
+			"title": "The Avengers",
+			"year": 2012,
+			"rated": "PG-13",
+			"released": "2012-05-04T04:00:00.000Z",
+			"runtime": 143,
+			"countries": ["USA"],
+			"genres": ["Action", "Sci-Fi", "Thriller"],
+			"director": "Joss Whedon",
+			"writers": ["Joss Whedon", "Zak Penn", "Joss Whedon"],
+			"actors": ["Robert Downey Jr.", "Chris Evans", "Mark Ruffalo", "Chris Hemsworth"],
+			"plot": "Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity.",
+			"poster": "http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SX300.jpg",
+			"imdb": {
+				"id": "tt0848228",
+				"rating": 8.1,
+				"votes": 920458
+			},
+			"metacritic": 69,
+			"awards": {
+				"wins": 35,
+				"nominations": 76,
+				"text": "Nominated for 1 Oscar. Another 35 wins & 76 nominations."
+			},
+			"type": "movie",
+			"_id": "tt0848228",
+			"path": "/Users/Shafiq/MoviesForProject/The.Avengers.2012.1080p.BRRip.x264.AAC-m2g/The.Avengers.2012.1080p.BRRip.x264.AAC-m2g.mkv",
+			"meta": {
+				"revision": 0,
+				"created": 1454724767233,
+				"version": 0
+			},
+			"$loki": 1
+		}, {
+			"title": "Iron Man",
+			"year": 2008,
+			"rated": "PG-13",
+			"released": "2008-05-02T04:00:00.000Z",
+			"runtime": 126,
+			"countries": ["USA"],
+			"genres": ["Action", "Adventure", "Sci-Fi"],
+			"director": "Jon Favreau",
+			"writers": ["Mark Fergus", "Hawk Ostby", "Art Marcum", "Matt Holloway", "Stan Lee", "Don Heck", "Larry Lieber", "Jack Kirby"],
+			"actors": ["Robert Downey Jr.", "Terrence Howard", "Jeff Bridges", "Gwyneth Paltrow"],
+			"plot": "After being held captive in an Afghan cave, an industrialist creates a unique weaponized suit of armor to fight evil.",
+			"poster": "http://ia.media-imdb.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg",
+			"imdb": {
+				"id": "tt0371746",
+				"rating": 7.9,
+				"votes": 650667
+			},
+			"metacritic": 79,
+			"awards": {
+				"wins": 19,
+				"nominations": 58,
+				"text": "Nominated for 2 Oscars. Another 19 wins & 58 nominations."
+			},
+			"type": "movie",
+			"_id": "tt0371746",
+			"path": "/Users/Shafiq/MoviesForProject/Iron.Man.2008.720p.BRRip.x264.AAC-Mikas/Iron.Man.2008.720p.BRRip.x264.AAC-Mikas.mkv",
+			"meta": {
+				"revision": 0,
+				"created": 1454724767243,
+				"version": 0
+			},
+			"$loki": 2
+		}, {
 			"title": "Rick and Morty",
 			"year": {
 				"from": 2013
@@ -36,14 +102,6 @@
 					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e01.hdtv.x264-2hd.mp4",
 					"timestamp": 0
 				}, {
-					"num": 2,
-					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e02.hdtv.x264-killers.mp4",
-					"timestamp": 0
-				}, {
-					"num": 3,
-					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e03.hdtv.x264-killers.mp4",
-					"timestamp": 0
-				}, {
 					"num": 4,
 					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e04.hdtv.x264-killers.mp4",
 					"timestamp": 0
@@ -52,62 +110,45 @@
 					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e05.hdtv.x264-2hd.mp4",
 					"timestamp": 0
 				}, {
-					"num": 6,
-					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e06.hdtv.x264-2hd.mp4",
-					"timestamp": 0
-				}, {
 					"num": 7,
 					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e07.hdtv.x264-2hd.mp4",
 					"timestamp": 0
 				}, {
-					"num": 8,
-					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e08.hdtv.x264-mtg.mp4",
+					"num": 2,
+					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e02.hdtv.x264-killers.mp4",
 					"timestamp": 0
 				}, {
 					"num": 9,
 					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e09.proper.hdtv.x264-2hd.mp4",
 					"timestamp": 0
 				}, {
-					"num": 10,
-					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e10.hdtv.x264-mtg.mp4",
+					"num": 3,
+					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e03.hdtv.x264-killers.mp4",
 					"timestamp": 0
 				}, {
 					"num": 11,
 					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e11.hdtv.x264-2hd.mp4",
 					"timestamp": 0
-				},{
-			"title": "The Avengers",
-			"year": 2012,
-			"rated": "PG-13",
-			"released": "2012-05-04T04:00:00.000Z",
-			"runtime": 143,
-			"countries": ["USA"],
-			"genres": ["Action", "Sci-Fi", "Thriller"],
-			"director": "Joss Whedon",
-			"writers": ["Joss Whedon", "Zak Penn", "Joss Whedon"],
-			"actors": ["Robert Downey Jr.", "Chris Evans", "Mark Ruffalo", "Chris Hemsworth"],
-			"plot": "Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity.",
-			"poster": "http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SX300.jpg",
-			"imdb": {
-				"id": "tt0848228",
-				"rating": 8.1,
-				"votes": 920458
+				}, {
+					"num": 8,
+					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e08.hdtv.x264-mtg.mp4",
+					"timestamp": 0
+				}, {
+					"num": 10,
+					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e10.hdtv.x264-mtg.mp4",
+					"timestamp": 0
+				}, {
+					"num": 6,
+					"path": "/Users/Shafiq/MoviesForProject/Rick.And.Morty.S01-S02.HDTV.x264-Scene/Rick.And.Morty.S01.HDTV.x264-Scene/rick.and.morty.s01e06.hdtv.x264-2hd.mp4",
+					"timestamp": 0
+				}]
 			},
-			"metacritic": 69,
-			"awards": {
-				"wins": 35,
-				"nominations": 76,
-				"text": "Nominated for 1 Oscar. Another 35 wins & 76 nominations."
-			},
-			"type": "movie",
-			"_id": "tt0848228",
-			"path": "/Users/Shafiq/MoviesForProject/The.Avengers.2012.1080p.BRRip.x264.AAC-m2g/The.Avengers.2012.1080p.BRRip.x264.AAC-m2g.mkv",
 			"meta": {
 				"revision": 0,
-				"created": 1454711581554,
+				"created": 1454724767245,
 				"version": 0
 			},
-			"$loki": 1
+			"$loki": 3
 		}, {
 			"title": "Avengers: Age of Ultron",
 			"year": 2015,
@@ -137,48 +178,7 @@
 			"path": "/Users/Shafiq/MoviesForProject/Avengers Age of Ultron 2015 BRRip x264 AAC-SSN/Avengers Age of Ultron 2015 BRRip x264 AAC-SSN.mkv",
 			"meta": {
 				"revision": 0,
-				"created": 1454711581562,
-				"version": 0
-			},
-			"$loki": 2
-		}, {
-			"title": "Iron Man",
-			"year": 2008,
-			"rated": "PG-13",
-			"released": "2008-05-02T04:00:00.000Z",
-			"runtime": 126,
-			"countries": ["USA"],
-			"genres": ["Action", "Adventure", "Sci-Fi"],
-			"director": "Jon Favreau",
-			"writers": ["Mark Fergus", "Hawk Ostby", "Art Marcum", "Matt Holloway", "Stan Lee", "Don Heck", "Larry Lieber", "Jack Kirby"],
-			"actors": ["Robert Downey Jr.", "Terrence Howard", "Jeff Bridges", "Gwyneth Paltrow"],
-			"plot": "After being held captive in an Afghan cave, an industrialist creates a unique weaponized suit of armor to fight evil.",
-			"poster": "http://ia.media-imdb.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg",
-			"imdb": {
-				"id": "tt0371746",
-				"rating": 7.9,
-				"votes": 650667
-			},
-			"metacritic": 79,
-			"awards": {
-				"wins": 19,
-				"nominations": 58,
-				"text": "Nominated for 2 Oscars. Another 19 wins & 58 nominations."
-			},
-			"type": "movie",
-			"_id": "tt0371746",
-			"path": "/Users/Shafiq/MoviesForProject/Iron.Man.2008.720p.BRRip.x264.AAC-Mikas/Iron.Man.2008.720p.BRRip.x264.AAC-Mikas.mkv",
-			"meta": {
-				"revision": 0,
-				"created": 1454711581565,
-				"version": 0
-			},
-			"$loki": 3
-		}]
-			},
-			"meta": {
-				"revision": 0,
-				"created": 1454711581608,
+				"created": 1454724768232,
 				"version": 0
 			},
 			"$loki": 4
@@ -189,7 +189,7 @@
 		"uniqueNames": [],
 		"transforms": {},
 		"objType": "media",
-		"dirty": false,
+		"dirty": true,
 		"cachedIndex": null,
 		"cachedBinaryIndex": null,
 		"cachedData": null,

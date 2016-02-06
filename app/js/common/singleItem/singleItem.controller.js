@@ -7,4 +7,5 @@ angApp.controller('SingleItemCtrl', function($rootScope, $scope, singleMedia, $s
       $scope.seasons.push(singleMedia.seasons[key])
     }
   }
+  console.log($scope.mediaData)
 })
