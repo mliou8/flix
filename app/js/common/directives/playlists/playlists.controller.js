@@ -1,6 +1,4 @@
 angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope) {
-
-
   $scope.showForm = false;
   $scope.addNewForm = function() {
     $scope.showForm = true;
