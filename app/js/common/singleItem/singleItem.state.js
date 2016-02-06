@@ -5,11 +5,7 @@ angApp.config(function($stateProvider){
     controller: 'SingleItemCtrl',
     resolve: {
       singleMedia: function(Storage, $stateParams){
-        return Storage.findMedia($stateParams.mediaId)
-        .then(function(mediaData){
-          console.log('this is the mediaData',mediaData[0])
-          return mediaData[0]
-        });
+        return Storage.db.getCollection("media").findOne({_id:$stateParams.mediaId})
       }
     }
   })

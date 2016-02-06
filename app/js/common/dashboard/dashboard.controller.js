@@ -20,6 +20,4 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage) {
   function findByGenre (genre) {
     return _.filter($scope.allMedia, {genre: genre});
   };
-
-	console.log('this is scope.allMedia', $scope.allMedia)
 })
