@@ -27,18 +27,20 @@ angApp.factory('Storage', function($rootScope) {
 				return new Promise(function(resolve, reject) {
 						if (self.db.collections.length) {
 							self.allMedia = self.db.getCollection('media');
+							self.plalists = self.db.getCollection('playlists');
 							self.loaded = true;
 							return resolve(self);
 						} else {
 							self.db.addCollection('media');
+							self.db.addCollection('playlists');
 							self.db.saveDatabase();
 							self.allMedia = self.db.getCollection('media');
+							self.playlists = self.db.getCollection('playlists');
 							self.loaded = true;
 							return resolve(self)
 						}
 					})
-					.then(function() {
-						self.initPlaylist();
+					.then(function(data) {
 						$rootScope.$emit('dbLoaded');
 					})
 					.catch(function(err) {
@@ -46,11 +48,11 @@ angApp.factory('Storage', function($rootScope) {
 					})
 			})
 		},
-		initPlaylist: function() {
-			var self = this;
-			self.db.addCollection('playlists');
-			self.db.saveDatabase();
-		},
+		// initPlaylist: function() {
+		// 	var self = this;
+		// 	self.db.addCollection('playlists');
+		// 	self.db.saveDatabase();
+		// },
 		findOrCreate: function(mediaObj) {
 			var self = this;
 			return new Promise(function(resolve, reject) {

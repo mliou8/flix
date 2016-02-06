@@ -7,7 +7,7 @@
             <li> <a ng-click="togglePlaylists()">Library</a></li>
             <li class="active">Playlists</li>
           </ol>
-            <span ng-repeat = "playlist in playlists">
+            <span ng-repeat = "playlist in playlists track by $index">
             <li>
               {{playlist.name}}
               {{playlist.media}}
