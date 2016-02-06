@@ -9,7 +9,8 @@
           </ol>
             <span ng-repeat = "playlist in playlists">
             <li>
-              {{playlist}}
+              {{playlist.name}}
+              {{playlist.media}}
             </li>
           </span>
           <span ng-show="showForm">

@@ -16,38 +16,40 @@ angApp.factory('Storage', function($rootScope) {
 				}
 			})
 	};
-	//Not being used anymore
 	return {
 		db: new loki(path.resolve(__dirname, 'app.db')),
 		playlists: null,
 		allMedia: null,
 		loaded: false,
-		init: function () {
+		init: function() {
 			var self = this;
-			self.db.loadDatabase({}, function () {
-				return new Promise(function (resolve, reject) {
-					if (self.db.collections.length) {
-						self.allMedia = self.db.getCollection('media');
-						self.playlists = self.db.getCollection('playlists')
-						self.loaded = true;
-						return resolve(self);
-					} else {
-						self.db.addCollection('media');
-						self.db.addCollection('playlists');
-						self.db.saveDatabase();
-						self.allMedia = self.db.getCollection('media');
-						self.playlists = self.db.getCollection('playlists');
-						self.loaded = true;
-						return resolve(self)
-					}
-				})
-				.then(function () {
+			self.db.loadDatabase({}, function() {
+				return new Promise(function(resolve, reject) {
+						if (self.db.collections.length) {
+							self.allMedia = self.db.getCollection('media');
+							self.loaded = true;
+							return resolve(self);
+						} else {
+							self.db.addCollection('media');
+							self.db.saveDatabase();
+							self.allMedia = self.db.getCollection('media');
+							self.loaded = true;
+							return resolve(self)
+						}
+					})
+					.then(function() {
+						self.initPlaylist();
 						$rootScope.$emit('dbLoaded');
 					})
-				.catch(function (err) {
+					.catch(function(err) {
 						console.log(err);
 					})
 			})
+		},
+		initPlaylist: function() {
+			var self = this;
+			self.db.addCollection('playlists');
+			self.db.saveDatabase();
 		},
 		findOrCreate: function(mediaObj) {
 			var self = this;
@@ -58,18 +60,21 @@ angApp.factory('Storage', function($rootScope) {
 							if (self.db.getCollection('media').find({
 									'_id': metadata.imdb.id
 								}).length > 0) {
-									var media = self.db.getCollection('media').findOne({'_id': metadata.imdb.id})
-									if(media.type === 'series'){
+								var media = self.db.getCollection('media').findOne({
+									'_id': metadata.imdb.id
+								})
+								if (media.type === 'series') {
 									Object.keys(mediaObj.seasons).forEach(function(key) {
 										if (media.seasons[key]) {
-											media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[key], 'num');
+											media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[
+												key], 'num');
 										} else {
 											media.seasons[key] = mediaObj.seasons[key];
 										}
 									})
 								}
-									self.db.saveDatabase();
-									resolve(self);
+								self.db.saveDatabase();
+								resolve(self);
 								//Still need to return actual file
 							} else {
 								var media = {};
@@ -87,6 +92,36 @@ angApp.factory('Storage', function($rootScope) {
 					reject(new Error('db is not ready'));
 				}
 			});
+		},
+		createPlaylist: function(playlist) {
+			var self = this;
+			console.log('in the createPlaylist', playlist)
+			console.log("loaded = ", self.loaded);
+			console.log("playlists ", self.db.getCollection('playlists'))
+				// return new Promise(function(resolve, reject) {
+			if (self.loaded && self.db.getCollection('playlists')) {
+				// if (self.db.getCollection('playlists').find({
+				// 		'name': playlist.name
+				// 	})) {
+				// 	// self.db.saveDatabase();
+				// 	// resolve(self);
+				// } else {
+				console.log('creating');
+				var tempPlaylist = {};
+				tempPlaylist.name = playlist.name;
+				tempPlaylist.media = playlist.media;
+				self.db.getCollection('playlists').insert(tempPlaylist);
+				console.log(tempPlaylist);
+				self.db.saveDatabase();
+				// }
+			} else {
+				reject(new Error('db is not ready'));
+			}
+			// })
+		},
+		findAllPlaylists: function() {
+			var self = this;
+			return self.db.getCollection('playlists').data;
 		},
 		updateTimestamp: function(mediaTitle, season, episode, newTimestamp) {
 			return new Promise(function(resolve, reject) {

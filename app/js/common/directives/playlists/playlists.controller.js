@@ -1,15 +1,22 @@
-angApp.controller('PlaylistsCtrl', function($scope, Storage) {
+angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope) {
 
-  $scope.playlists = ['playlist1', "playlist2", "playlist3"];
+
   $scope.showForm = false;
   $scope.addNewForm = function() {
     $scope.showForm = true;
   }
+  $rootScope.$on('dbLoaded', function() {
+    $scope.$apply($scope.playlists = Storage.db.getCollection(
+      'playlists').data)
+  })
+
   $scope.createPlaylist = function() {
     console.log($scope.name);
     $scope.showForm = false;
-    Storage.findOrCreate($scope.name)
-      .then(result => console.log(result));
+    var playlist = {}
+    playlist.name = $scope.name;
+    playlist.media = ['video1', 'video2'];
+    Storage.createPlaylist(playlist);
   }
 
 })
