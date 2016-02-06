@@ -1,6 +1,6 @@
 angApp.config(function($stateProvider){
   $stateProvider.state('playerState', {
-    url: '/player/:data',
+    url: '/player/:data/:path',
     templateUrl: './app/js/common/player/player.html',
     controller: 'PlayerCtrl',
     resolve: {
