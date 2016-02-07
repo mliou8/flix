@@ -1,4 +1,5 @@
-angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope) {
+angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope,
+  playlistService) {
   $scope.showForm = false;
   $scope.addNewForm = function() {
     $scope.showForm = true;
@@ -16,5 +17,13 @@ angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope) {
     playlist.media = [];
     Storage.createPlaylist(playlist);
   }
+
+  $scope.handleClick = function(msg) {
+    playlistService.prepForBroadcast(msg);
+  };
+
+  $scope.$on('handleBroadcast', function() {
+    $scope.message = playlistService.message;
+  });
 
 })

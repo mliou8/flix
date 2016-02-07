@@ -1,5 +1,6 @@
 var _ = require('lodash');
-angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage) {
+angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
+  playlistService) {
   Storage.init();
   $rootScope.$on('dbLoaded', function() {
     $scope.$apply($scope.allMedia = Storage.allMedia.data);
@@ -27,11 +28,16 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage) {
     });
   };
 
+  $scope.$on('handleBroadcast', function() {
+    $scope.message = playlistService.message;
+    console.log("scope message", $scope.message);
+  });
+
 
   $scope.playlists = Storage.findAllPlaylists();
   $scope.editPlaylist = function(playlist, media) {
-    console.log("playlist is ", playlist);
-    console.log("media is ", media);
+    // console.log("playlist is ", playlist);
+    // console.log("media is ", media);
     Storage.updatePlaylist(playlist.name, media);
   }
 

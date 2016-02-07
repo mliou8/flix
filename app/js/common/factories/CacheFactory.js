@@ -121,22 +121,25 @@ angApp.factory('Storage', function($rootScope) {
 			}
 			// })
 		},
-		updatePlaylist: function(playlist, media) {
-			return new Promise(function(resolve, reject) {
-				self.db.getCollection('playlists').find({
-						name: playlist
-					})
-					.then(function(result) {
-						result.update(function(media) {
-							console.log("Success Updating thank you")
-							return result.media.push(media);
-						})
-					})
-			})
-		},
 		findAllPlaylists: function() {
 			var self = this;
 			return self.db.getCollection('playlists').data;
+		},
+		updatePlaylist: function(playlist, media) {
+			var self = this;
+			return new Promise(function(resolve, reject) {
+				if (self.loaded && self.db.getCollection('playlists')) {
+					var dbPlaylist = self.db.getCollection('playlists').find({
+						'name': playlist
+					})
+					console.log("playlist in factory is ", dbPlaylist)
+				}
+				return resolve(dbPlaylist)
+			}).then(function(playlist) {
+				console.log("success ", playlist);
+				playlist[0].media.push(media)
+				self.db.saveDatabase();
+			})
 		},
 		updateTimestamp: function(mediaTitle, season, episode, newTimestamp) {
 			return new Promise(function(resolve, reject) {

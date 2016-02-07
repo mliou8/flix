@@ -9,8 +9,7 @@
           </ol>
             <span ng-repeat = "playlist in playlists track by $index">
             <li>
-              {{playlist.name}}
-              {{playlist.media}}
+              <a ng-click="handleClick(playlist)"> {{playlist.name}} </a>
             </li>
           </span>
           <span ng-show="showForm">
