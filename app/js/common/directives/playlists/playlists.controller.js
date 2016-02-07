@@ -13,7 +13,7 @@ angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope) {
     $scope.showForm = false;
     var playlist = {}
     playlist.name = $scope.name;
-    playlist.media = ['video1', 'video2'];
+    playlist.media = [];
     Storage.createPlaylist(playlist);
   }
 

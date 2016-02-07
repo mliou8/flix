@@ -26,4 +26,12 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage) {
       genre: genre
     });
   };
+  $scope.editPlaylist = function(name, media) {
+    console.log('name ', name);
+    console.log('playlistname ', $scope.playlist);
+    console.log('media ', media)
+    console.log('media ', $scope.media)
+  }
+
+  $scope.playlists = Storage.findAllPlaylists();
 })

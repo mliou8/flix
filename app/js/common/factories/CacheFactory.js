@@ -121,6 +121,18 @@ angApp.factory('Storage', function($rootScope) {
 			}
 			// })
 		},
+		updatePlaylist: function(playlist, media) {
+			return new Promise(function(resolve, reject) {
+				self.db.getCollection('playlists').find({
+						name: playlist
+					})
+					.then(function(result) {
+						result.update(function(media) {
+							return result.media.push(media)
+						})
+					})
+			})
+		},
 		findAllPlaylists: function() {
 			var self = this;
 			return self.db.getCollection('playlists').data;
