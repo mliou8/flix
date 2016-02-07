@@ -128,7 +128,8 @@ angApp.factory('Storage', function($rootScope) {
 					})
 					.then(function(result) {
 						result.update(function(media) {
-							return result.media.push(media)
+							console.log("Success Updating thank you")
+							return result.media.push(media);
 						})
 					})
 			})
