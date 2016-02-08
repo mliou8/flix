@@ -26,7 +26,7 @@ angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope,
     playlistService.prepForState();
   }
 
-  $scope.$on('showAll', function() {
+  $scope.$on('handleState', function() {
     $scope.filtered = false;
   })
 
