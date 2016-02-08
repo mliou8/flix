@@ -5,7 +5,6 @@ var loki = require('lokijs'),
 	omdb = Promise.promisifyAll(require('omdb')),
 	_ = require('lodash');
 
-
 angApp.factory('Storage', function($rootScope) {
 	function findOmdb(name) {
 		return omdb.searchAsync(name)
@@ -40,7 +39,7 @@ angApp.factory('Storage', function($rootScope) {
 							return resolve(self)
 						}
 					})
-					.then(function(data) {
+					.then(function() {
 						$rootScope.$emit('dbLoaded');
 					})
 					.catch(function(err) {
@@ -48,11 +47,6 @@ angApp.factory('Storage', function($rootScope) {
 					})
 			})
 		},
-		// initPlaylist: function() {
-		// 	var self = this;
-		// 	self.db.addCollection('playlists');
-		// 	self.db.saveDatabase();
-		// },
 		findOrCreate: function(mediaObj) {
 			var self = this;
 			return new Promise(function(resolve, reject) {
@@ -68,8 +62,9 @@ angApp.factory('Storage', function($rootScope) {
 								if (media.type === 'series') {
 									Object.keys(mediaObj.seasons).forEach(function(key) {
 										if (media.seasons[key]) {
-											media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[
-												key], 'num');
+											media.seasons[key] = _.unionBy(media.seasons[key],
+												mediaObj.seasons[
+													key], 'num');
 										} else {
 											media.seasons[key] = mediaObj.seasons[key];
 										}
@@ -82,7 +77,8 @@ angApp.factory('Storage', function($rootScope) {
 								var media = {};
 								media = metadata;
 								media._id = metadata.imdb.id;
-								if (media.type === 'series') media.seasons = mediaObj.seasons;
+								if (media.type === 'series') media.seasons = mediaObj
+									.seasons;
 								if (media.type === 'movie') media.path = mediaObj.path;
 								self.db.getCollection('media').insert(media);
 								console.log(media);
@@ -115,11 +111,9 @@ angApp.factory('Storage', function($rootScope) {
 				self.db.getCollection('playlists').insert(tempPlaylist);
 				console.log(tempPlaylist);
 				self.db.saveDatabase();
-				// }
 			} else {
 				reject(new Error('db is not ready'));
 			}
-			// })
 		},
 		findAllPlaylists: function() {
 			var self = this;
@@ -141,7 +135,18 @@ angApp.factory('Storage', function($rootScope) {
 				self.db.saveDatabase();
 			})
 		},
-		updateTimestamp: function(mediaTitle, season, episode, newTimestamp) {
+		findBackdrop: function(title, $http) {
+			console.log("factory", title)
+			$http({
+				url: "http://api.movies.io/movies/search?q",
+				method: "GET",
+				params: {
+					q: title
+				}
+			})
+		},
+		updateTimestamp: function(mediaTitle,
+			season, episode, newTimestamp) {
 			return new Promise(function(resolve, reject) {
 				if (self.loaded && self.db.getCollection('media')) {
 					findOmdb(mediaTitle)
@@ -152,7 +157,8 @@ angApp.factory('Storage', function($rootScope) {
 								var updating = self.media.findOne({
 									'_id': metadata.imdb.id
 								})
-								updating.seasons[season][episode].timestamp = newTimestamp;
+								updating.seasons[season][episode].timestamp =
+									newTimestamp;
 								resolve(self.media.update(updating));
 							} else {
 								reject(new Error('media not found'));
