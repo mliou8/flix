@@ -1,5 +1,6 @@
 .background{
   background-color: black;
+  height: 100vh;
 }
 .hovereffect {
   width: 100%;
@@ -11,12 +12,13 @@
   cursor: default;
 }
 .img-responsive{
-  margin-bottom:15px;
+  margin-bottom:5%;
   height: 400px !important;
+  width: 300px !important;
 }
 .hovereffect .overlay {
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 400px;
   position: absolute;
   overflow: hidden;
   left: 0;
