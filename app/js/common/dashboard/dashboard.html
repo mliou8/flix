@@ -1,12 +1,9 @@
-<div>
-	<ul>
-		<p>Movies/Shows</p>
-		<div class="row">
-			<div class="col-md-4" ng-repeat="media in allMedia track by $index">
-				<img class="media-object" ng-src="{{media.poster}}">
-				<div class="media-body">
-					<strong><a ui-sref="singleItemState({mediaId: media.imdb.id})">{{media.title}}</a></strong>
-					<p>{{media.plot}}</p>
-			</div>
-		</div>
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 background" ng-repeat="media in allMedia track by $index">
+    <div class="hovereffect" ui-sref="singleItemState({mediaId: media.imdb.id})">
+        <img class="img-responsive" src="{{media.poster}}">
+        <div class="overlay">
+           <h2>{{media.title}}</h2>
+           <a class="info">show stars</a>
+        </div>
+    </div>
 </div>
