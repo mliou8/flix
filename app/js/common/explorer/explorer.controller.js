@@ -58,7 +58,8 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
 					});
 					if (eachFile.type === 'series') {
 						if (matchingItem) {
-							if (!matchingItem.seasons[eachFile.season]) matchingItem.seasons[eachFile.season] = [{
+							if (!matchingItem.seasons[eachFile.season]) matchingItem.seasons[
+								eachFile.season] = [{
 								num: eachFile.episode[0],
 								path: eachFile.filePath,
 								timestamp: 0
@@ -82,7 +83,7 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
 							})
 							mediaArr.push(mediaObj);
 						}
-					}else{
+					} else {
 						var mediaObj = {
 							terms: eachFile.name,
 							year: eachFile.year,
@@ -91,8 +92,10 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
 						mediaArr.push(mediaObj);
 					}
 				});
-					Promise.all(mediaArr.map(function(eachRecord){return Storage.findOrCreate(eachRecord)}))
-					.then(function(){
+				Promise.all(mediaArr.map(function(eachRecord) {
+						return Storage.findOrCreate(eachRecord)
+					}))
+					.then(function() {
 						$state.go('dashboardState')
 					})
 			})

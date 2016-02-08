@@ -4,12 +4,12 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
           <ol class="breadcrumb">
-            <li> <a ng-click="togglePlaylists()">Library</a></li>
+            <li> <a ng-click="returnAll()"> Library</a></li>
             <li class="active">Playlists</li>
           </ol>
-            <span ng-repeat = "playlist in playlists">
+            <span ng-repeat = "playlist in playlists track by $index">
             <li>
-              {{playlist}}
+              <a ng-click="handleClick(playlist)"> {{playlist.name}} </a>
             </li>
           </span>
           <span ng-show="showForm">
