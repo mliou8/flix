@@ -5,7 +5,7 @@ var loki = require('lokijs'),
 	omdb = Promise.promisifyAll(require('omdb')),
 	_ = require('lodash');
 
-angApp.factory('Storage', function($rootScope) {
+angApp.factory('Storage', function($rootScope, $http) {
 	function findOmdb(name) {
 		return omdb.searchAsync(name)
 			.then(function(results) {
@@ -88,16 +88,6 @@ angApp.factory('Storage', function($rootScope) {
 				}
 			});
 		},
-		findBackdrop: function(title, $http) {
-			console.log("factory", title)
-			$http({
-				url: "http://api.movies.io/movies/search?q",
-				method: "GET",
-				params: {
-					q: title
-				}
-			})
-		},
 		updateTimestamp: function(mediaTitle, season, episode, newTimestamp) {
 			return new Promise(function(resolve, reject) {
 				if (self.loaded && self.db.getCollection('media')) {
@@ -117,6 +107,73 @@ angApp.factory('Storage', function($rootScope) {
 						})
 				}
 			})
+		},
+		getRemote: function(link) {
+			$http.get(link + '/catalog')
+				.then(function(catalog) {
+					var catalogToSave = _.map(catalog, function(item) {
+						if (item.type === 'movie') {
+							item.remote = true;
+							episode.route = link + '/allFiles/' + item._id + '/';
+						} else {
+							for (var key in item.seasons) {
+								item.seasons[key].forEach(function(episode) {
+									episode.remote = true;
+									episode.route = link + '/allFiles/' + item._id + '/' + key + '/' + episode.num;
+								})
+							}
+						}
+					})
+					return catalogToSave;
+				})
+				.then(function(catalogToSave) {
+					return catalogToSave.forEach(function(item) {
+						this.findOrCreate(item);
+					})
+				})
+		},
+		createPlaylist: function(playlist) {
+			var self = this;
+			if (self.loaded && self.db.getCollection('playlists')) {
+				var tempPlaylist = {};
+				tempPlaylist.name = playlist.name;
+				tempPlaylist.media = playlist.media;
+				self.db.getCollection('playlists').insert(tempPlaylist);
+				console.log(tempPlaylist);
+				self.db.saveDatabase();
+			} else {
+				reject(new Error('db is not ready'));
+			}
+		},
+		findAllPlaylists: function() {
+			var self = this;
+			return self.db.getCollection('playlists').data;
+		},
+		updatePlaylist: function(playlist, media) {
+			var self = this;
+			return new Promise(function(resolve, reject) {
+				if (self.loaded && self.db.getCollection('playlists')) {
+					var dbPlaylist = self.db.getCollection('playlists').find({
+						'name': playlist
+					})
+					console.log("playlist in factory is ", dbPlaylist)
+				}
+				return resolve(dbPlaylist)
+			}).then(function(playlist) {
+				console.log("success ", playlist);
+				playlist[0].media.push(media)
+				self.db.saveDatabase();
+			})
+		},
+		findBackdrop: function(title, $http) {
+			console.log("factory", title)
+			$http({
+				url: "http://api.movies.io/movies/search?q",
+				method: "GET",
+				params: {
+					q: title
+				}
+			})
 		}
-	};
+	}
 });
