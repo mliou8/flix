@@ -24,8 +24,6 @@
   background-color: black; }
 
 .hovereffect {
-  width: 100%;
-  height: 100%;
   float: left;
   overflow: hidden;
   position: relative;
@@ -33,12 +31,13 @@
   cursor: default; }
 
 .img-responsive {
-  margin-bottom: 15px;
-  height: 400px !important; }
+  margin-bottom: 5%;
+  height: 400px !important;
+  width: 300px !important; }
 
 .hovereffect .overlay {
   width: 100%;
-  height: 100%;
+  height: 400px;
   position: absolute;
   overflow: hidden;
   left: 0;
@@ -135,6 +134,3 @@ button {
   width: 100vw;
   height: 100vh;
   color: white; }
-
-.breakpoint {
-  height: 200px; }
