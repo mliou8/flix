@@ -10,7 +10,6 @@ angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope,
   })
 
   $scope.createPlaylist = function() {
-    console.log($scope.name);
     $scope.showForm = false;
     var playlist = {}
     playlist.name = $scope.name;
