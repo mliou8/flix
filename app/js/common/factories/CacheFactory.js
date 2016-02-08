@@ -114,7 +114,7 @@ angApp.factory('Storage', function($rootScope, $http) {
 					var catalogToSave = _.map(catalog, function(item) {
 						if (item.type === 'movie') {
 							item.remote = true;
-							episode.route = link + '/allFiles/' + item._id + '/';
+							item.route = link + '/allFiles/' + item._id + '/';
 						} else {
 							for (var key in item.seasons) {
 								item.seasons[key].forEach(function(episode) {
