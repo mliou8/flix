@@ -2,7 +2,7 @@
 	<ul>
 		<p>Movies/Shows</p>
 		<div class="row">
-			<div class="col-md-4" ng-repeat="media in allMedia track by $index | filter: {media: message.media}">
+			<div class="col-md-4" ng-repeat="media in allMedia track by $index">
 				<img class="media-object" ng-src="{{media.poster}}">
 				<form>
 					Add to Playlist

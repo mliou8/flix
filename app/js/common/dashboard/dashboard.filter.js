@@ -1,5 +1,5 @@
-angApp.filter('playlist', ['segmentio', function(segmentio) {
-  return function(entry, category) {
-    segmentio.track(entry, category);
-  }
-}]);
+// angApp.filter('playlist', ['playlistService', function(playlistService) {
+//   return function(playlistService) {
+//     playlistService.
+//   }
+// }]);
