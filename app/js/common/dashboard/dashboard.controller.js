@@ -37,26 +37,36 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
     //Filter function broken out
     function compare(value) {
       // console.log("value ", value);
-      // console.log("true or false ", $scope.message.media.indexOf(value) !==
-      //   -1)
-      return $scope.message.media.indexOf(value) !== -1;
+      // console.log("message.media ", $scope.message.media)
+      for (var i = 0; i < $scope.message.media.length; i++) {
+        // console.log("message media ", $scope.message.media[i]);
+        // console.log("Value ", value)
+        if ($scope.message.media[i]._id == value._id) {
+          // console.log("true");
+          return true;
+        }
+      }
+      // return ($scope.message.media.indexOf(value) !== -1);
     }
     $scope.message = playlistService.message;
     $scope.filteredMedia = $scope.allMedia.filter(compare);
-    console.log("$scope.allMedia ", $scope.allMedia);
+    // console.log("$scope.allMedia ", $scope.allMedia);
+    // console.log("$scope.filteredMedia ", $scope.filteredMedia);
   });
 
   //Return to show all
-  $scope.$on('showAll', function() {
+  $scope.$on('handleState', function() {
     $scope.filtered = false;
   })
-
 
   $scope.playlists = Storage.findAllPlaylists();
 
   $scope.editPlaylist = function(playlist, media) {
     // console.log("playlist is ", playlist);
     // console.log("media is ", media);
+    if (!playlist) {
+      alert("not a valid selection");
+    }
     Storage.updatePlaylist(playlist.name, media);
   }
 

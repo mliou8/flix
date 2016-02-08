@@ -1,5 +1,5 @@
 angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope,
-  playlistService) {
+  playlistService, $state) {
   $scope.showForm = false;
   $scope.addNewForm = function() {
     $scope.showForm = true;
@@ -22,9 +22,10 @@ angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope,
     playlistService.prepForBroadcast(msg);
   };
 
-  $scope.returnAll = function(bool) {
-    playlistService.prepForBroadcast(bool)
+  $scope.returnAll = function() {
+    playlistService.prepForState();
   }
+
   $scope.$on('showAll', function() {
     $scope.filtered = false;
   })

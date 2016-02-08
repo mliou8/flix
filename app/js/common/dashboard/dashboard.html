@@ -8,7 +8,7 @@
 				<form>
 					Add to Playlist
 				<select ng-model="playlist" ng-options="playlist as playlist.name for playlist in playlists">
-					<!-- <option ng-repeat="playlist in playlists" value="{{playlist.name}}">{{playlist.name}}</option> -->
+					<option value="">Select a Playlist</option>
 				</select>
 				<button type="button" class="button" ng-click="editPlaylist(playlist, media)"> Button </button>
 			</form>
@@ -18,16 +18,15 @@
 				</div>
 			</div>
 			<!-- Playlist Version -->
-			<div class="col-md-4" ng-show="filtered" ng-repeat="media in allMedia track by $index">
+			<div class="col-md-4" ng-show="filtered" ng-repeat="media in filteredMedia track by $index">
 				<img class="media-object" ng-src="{{media.poster}}">
 				<form>
 					Add to Playlist
 				<select ng-model="playlist" ng-options="playlist as playlist.name for playlist in playlists">
-					<!-- <option ng-repeat="playlist in playlists" value="{{playlist.name}}">{{playlist.name}}</option> -->
+					<option value="">Select a Playlist</option>
 				</select>
 				<button type="button" class="button" ng-click="editPlaylist(playlist, media)"> Button </button>
 			</form>
-			{{message}}
 				<div class="media-body">
 					<strong> <a ui-sref="singleItemState({mediaId: media.imdb.id})">{{media.title}}</a> </strong>
 					<p>{{media.plot}}</p>
