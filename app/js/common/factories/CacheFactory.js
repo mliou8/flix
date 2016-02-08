@@ -6,7 +6,7 @@ var loki = require('lokijs'),
 	_ = require('lodash');
 
 
-angApp.factory('Storage', function($rootScope) {
+angApp.factory('Storage', function($rootScope, $http) {
 	function findOmdb(name) {
 		return omdb.searchAsync(name)
 			.then(function(results) {
@@ -107,6 +107,9 @@ angApp.factory('Storage', function($rootScope) {
 						})
 				}
 			})
+		},
+		getRemote: function(link) {
+			$http.get()
 		}
 	};
 });
