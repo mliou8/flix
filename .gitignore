@@ -6,3 +6,4 @@ dist
 logs
 *.log
 public
+app.db
