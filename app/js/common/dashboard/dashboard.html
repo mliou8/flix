@@ -1,6 +1,6 @@
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="media in allMedia track by $index">
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 background" ng-repeat="media in allMedia track by $index">
     <div class="hovereffect" ui-sref="singleItemState({mediaId: media.imdb.id})">
-        <img class="img-responsive" src="{{media.poster}}" alt="">
+        <img class="img-responsive" src="{{media.poster}}">
         <div class="overlay">
            <h2>{{media.title}}</h2>
            <a class="info">show stars</a>

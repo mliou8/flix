@@ -5,7 +5,6 @@ var loki = require('lokijs'),
 	omdb = Promise.promisifyAll(require('omdb')),
 	_ = require('lodash');
 
-
 angApp.factory('Storage', function($rootScope) {
 	function findOmdb(name) {
 		return omdb.searchAsync(name)
@@ -16,35 +15,34 @@ angApp.factory('Storage', function($rootScope) {
 				}
 			})
 	};
-	//Not being used anymore
 	return {
 		db: new loki(path.resolve(__dirname, 'app.db')),
 		playlists: null,
 		allMedia: null,
 		loaded: false,
-		init: function () {
+		init: function() {
 			var self = this;
-			self.db.loadDatabase({}, function () {
-				return new Promise(function (resolve, reject) {
-					if (self.db.collections.length) {
-						self.allMedia = self.db.getCollection('media');
-						self.playlists = self.db.getCollection('playlists')
-						self.loaded = true;
-						return resolve(self);
-					} else {
-						self.db.addCollection('media');
-						self.db.addCollection('playlists');
-						self.db.saveDatabase();
-						self.allMedia = self.db.getCollection('media');
-						self.playlists = self.db.getCollection('playlists');
-						self.loaded = true;
-						return resolve(self)
-					}
-				})
-				.then(function () {
+			self.db.loadDatabase({}, function() {
+				return new Promise(function(resolve, reject) {
+						if (self.db.collections.length) {
+							self.allMedia = self.db.getCollection('media');
+							self.playlists = self.db.getCollection('playlists')
+							self.loaded = true;
+							return resolve(self);
+						} else {
+							self.db.addCollection('media');
+							self.db.addCollection('playlists');
+							self.db.saveDatabase();
+							self.allMedia = self.db.getCollection('media');
+							self.playlists = self.db.getCollection('playlists');
+							self.loaded = true;
+							return resolve(self)
+						}
+					})
+					.then(function() {
 						$rootScope.$emit('dbLoaded');
 					})
-				.catch(function (err) {
+					.catch(function(err) {
 						console.log(err);
 					})
 			})
@@ -58,8 +56,10 @@ angApp.factory('Storage', function($rootScope) {
 							if (self.db.getCollection('media').find({
 									'_id': metadata.imdb.id
 								}).length > 0) {
-									var media = self.db.getCollection('media').findOne({'_id': metadata.imdb.id})
-									if(media.type === 'series'){
+								var media = self.db.getCollection('media').findOne({
+									'_id': metadata.imdb.id
+								})
+								if (media.type === 'series') {
 									Object.keys(mediaObj.seasons).forEach(function(key) {
 										if (media.seasons[key]) {
 											media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[key], 'num');
@@ -68,8 +68,8 @@ angApp.factory('Storage', function($rootScope) {
 										}
 									})
 								}
-									self.db.saveDatabase();
-									resolve(self);
+								self.db.saveDatabase();
+								resolve(self);
 								//Still need to return actual file
 							} else {
 								var media = {};
@@ -87,6 +87,16 @@ angApp.factory('Storage', function($rootScope) {
 					reject(new Error('db is not ready'));
 				}
 			});
+		},
+		findBackdrop: function(title, $http) {
+			console.log("factory", title)
+			$http({
+				url: "http://api.movies.io/movies/search?q",
+				method: "GET",
+				params: {
+					q: title
+				}
+			})
 		},
 		updateTimestamp: function(mediaTitle, season, episode, newTimestamp) {
 			return new Promise(function(resolve, reject) {

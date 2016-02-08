@@ -1,7 +1,9 @@
 * {
   box-sizing: border-box;
 }
-
+.col-xs-10{
+  padding: 0px;
+}
 @mixin clearfix {
   &:after {
     content: "";
@@ -31,3 +33,4 @@
 @import 'explorer/main';
 @import 'sidebar/main';
 @import 'forms/main';
+@import 'singleItem/main';

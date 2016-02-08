@@ -1,15 +1,11 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="col-md-12 text-center">
-				<img class="media-object" ng-src="{{mediaData.poster}}">
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="col-md-12">
+<div class="row backdrop" style="background-image: url({{mediaData.backdrop}}); height: 100vh;">
+		<div sytle="background-color: rgba(255, 255, 255, 0.7); width:100%; height: 100;">
+		<div class="col-md-12 boxed">
 				<h1 class="text-center">{{mediaData.title}}</h1>
+				<br class="breakpoint">
+				<div class="col-md-6">
 				<p>{{mediaData.plot}}</p>
-				<button class="btn btn-primary btn-block" ng-if="!series" ui-sref="playerState({data: mediaData._id, path: mediaData.path})">
+				<button class="btn btn-default" ng-if="!series" ui-sref="playerState({data: mediaData._id, path: mediaData.path})">
 					Play Movie
 				</button>
 				<span ng-if="series" ng-repeat="season in seasons">
