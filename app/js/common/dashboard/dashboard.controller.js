@@ -28,13 +28,32 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
     });
   };
 
+  $scope.filtered = false;
+
   $scope.$on('handleBroadcast', function() {
+    //Which version of playlist is shown
+    $scope.filtered = true;
+
+    //Filter function broken out
+    function compare(value) {
+      // console.log("value ", value);
+      // console.log("true or false ", $scope.message.media.indexOf(value) !==
+      //   -1)
+      return $scope.message.media.indexOf(value) !== -1;
+    }
     $scope.message = playlistService.message;
-    console.log("scope message", $scope.message);
+    $scope.filteredMedia = $scope.allMedia.filter(compare);
+    console.log("$scope.allMedia ", $scope.allMedia);
   });
+
+  //Return to show all
+  $scope.$on('showAll', function() {
+    $scope.filtered = false;
+  })
 
 
   $scope.playlists = Storage.findAllPlaylists();
+
   $scope.editPlaylist = function(playlist, media) {
     // console.log("playlist is ", playlist);
     // console.log("media is ", media);

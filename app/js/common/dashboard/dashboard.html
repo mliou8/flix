@@ -2,7 +2,23 @@
 	<ul>
 		<p>Movies/Shows</p>
 		<div class="row">
-			<div class="col-md-4" ng-repeat="media in allMedia track by $index">
+			<!--All Files Version -->
+			<div class="col-md-4" ng-hide="filtered" ng-repeat="media in allMedia track by $index">
+				<img class="media-object" ng-src="{{media.poster}}">
+				<form>
+					Add to Playlist
+				<select ng-model="playlist" ng-options="playlist as playlist.name for playlist in playlists">
+					<!-- <option ng-repeat="playlist in playlists" value="{{playlist.name}}">{{playlist.name}}</option> -->
+				</select>
+				<button type="button" class="button" ng-click="editPlaylist(playlist, media)"> Button </button>
+			</form>
+				<div class="media-body">
+					<strong> <a ui-sref="singleItemState({mediaId: media.imdb.id})">{{media.title}}</a> </strong>
+					<p>{{media.plot}}</p>
+				</div>
+			</div>
+			<!-- Playlist Version -->
+			<div class="col-md-4" ng-show="filtered" ng-repeat="media in allMedia track by $index">
 				<img class="media-object" ng-src="{{media.poster}}">
 				<form>
 					Add to Playlist

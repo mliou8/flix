@@ -22,6 +22,13 @@ angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope,
     playlistService.prepForBroadcast(msg);
   };
 
+  $scope.returnAll = function(bool) {
+    playlistService.prepForBroadcast(bool)
+  }
+  $scope.$on('showAll', function() {
+    $scope.filtered = false;
+  })
+
   $scope.$on('handleBroadcast', function() {
     $scope.message = playlistService.message;
   });
