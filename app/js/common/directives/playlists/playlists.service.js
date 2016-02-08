@@ -9,7 +9,6 @@ angApp.factory('playlistService', function($rootScope) {
   };
 
   sharedService.prepForState = function() {
-    this.bool = false;
     this.broadcastState();
   }
 
