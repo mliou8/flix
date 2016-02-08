@@ -10,7 +10,6 @@ angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope,
   })
 
   $scope.createPlaylist = function() {
-    console.log($scope.name);
     $scope.showForm = false;
     var playlist = {}
     playlist.name = $scope.name;
@@ -26,7 +25,7 @@ angApp.controller('PlaylistsCtrl', function($scope, Storage, $rootScope,
     playlistService.prepForState();
   }
 
-  $scope.$on('showAll', function() {
+  $scope.$on('handleState', function() {
     $scope.filtered = false;
   })
 

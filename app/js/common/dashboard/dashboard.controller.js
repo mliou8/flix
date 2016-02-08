@@ -36,13 +36,13 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
 
     //Filter function broken out
     function compare(value) {
-      // console.log("value ", value);
-      // console.log("message.media ", $scope.message.media)
+      console.log("value ", value);
+      console.log("message.media ", $scope.message.media)
       for (var i = 0; i < $scope.message.media.length; i++) {
         // console.log("message media ", $scope.message.media[i]);
         // console.log("Value ", value)
         if ($scope.message.media[i]._id == value._id) {
-          // console.log("true");
+          console.log("true");
           return true;
         }
       }
