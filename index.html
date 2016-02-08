@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html>
 
 <head>
@@ -17,9 +17,9 @@
 
 	<!-- <div class="container-fluid"> -->
 		<section class="main">
-			<div class="col-xs-2">
-				<sidebar> </sidebar>
-				<span ng-show="showPlaylists"><playlists></playlists></span>
+			<div class="col-xs-2" ng-controller="NavCtrl">
+				<span ng-hide="showPlaylists"><sidebar> </sidebar> </span>
+				<span ng-show="showPlaylists"><playlists></playlists> </span>
 			</div>
 			<div class="col-xs-10">
 				<ui-view></ui-view>
