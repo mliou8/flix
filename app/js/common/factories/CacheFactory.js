@@ -5,7 +5,7 @@ var loki = require('lokijs'),
 	omdb = Promise.promisifyAll(require('omdb')),
 	_ = require('lodash');
 
-angApp.factory('Storage', function($rootScope) {
+angApp.factory('Storage', function($rootScope, $http) {
 	function findOmdb(name) {
 		return omdb.searchAsync(name)
 			.then(function(results) {
@@ -26,7 +26,7 @@ angApp.factory('Storage', function($rootScope) {
 				return new Promise(function(resolve, reject) {
 						if (self.db.collections.length) {
 							self.allMedia = self.db.getCollection('media');
-							self.plalists = self.db.getCollection('playlists');
+							self.playlists = self.db.getCollection('playlists')
 							self.loaded = true;
 							return resolve(self);
 						} else {
@@ -62,9 +62,7 @@ angApp.factory('Storage', function($rootScope) {
 								if (media.type === 'series') {
 									Object.keys(mediaObj.seasons).forEach(function(key) {
 										if (media.seasons[key]) {
-											media.seasons[key] = _.unionBy(media.seasons[key],
-												mediaObj.seasons[
-													key], 'num');
+											media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[key], 'num');
 										} else {
 											media.seasons[key] = mediaObj.seasons[key];
 										}
@@ -77,8 +75,7 @@ angApp.factory('Storage', function($rootScope) {
 								var media = {};
 								media = metadata;
 								media._id = metadata.imdb.id;
-								if (media.type === 'series') media.seasons = mediaObj
-									.seasons;
+								if (media.type === 'series') media.seasons = mediaObj.seasons;
 								if (media.type === 'movie') media.path = mediaObj.path;
 								self.db.getCollection('media').insert(media);
 								console.log(media);
@@ -91,20 +88,53 @@ angApp.factory('Storage', function($rootScope) {
 				}
 			});
 		},
+		updateTimestamp: function(mediaTitle, season, episode, newTimestamp) {
+			return new Promise(function(resolve, reject) {
+				if (self.loaded && self.db.getCollection('media')) {
+					findOmdb(mediaTitle)
+						.then(function(metadata) {
+							if (self.media.find({
+									'_id': metadata.imdb.id
+								})) {
+								var updating = self.media.findOne({
+									'_id': metadata.imdb.id
+								})
+								updating.seasons[season][episode].timestamp = newTimestamp;
+								resolve(self.media.update(updating));
+							} else {
+								reject(new Error('media not found'));
+							}
+						})
+				}
+			})
+		},
+		getRemote: function(link) {
+			$http.get(link + '/catalog')
+				.then(function(catalog) {
+					var catalogToSave = _.map(catalog, function(item) {
+						if (item.type === 'movie') {
+							item.remote = true;
+							episode.route = link + '/allFiles/' + item._id + '/';
+						} else {
+							for (var key in item.seasons) {
+								item.seasons[key].forEach(function(episode) {
+									episode.remote = true;
+									episode.route = link + '/allFiles/' + item._id + '/' + key + '/' + episode.num;
+								})
+							}
+						}
+					})
+					return catalogToSave;
+				})
+				.then(function(catalogToSave) {
+					return catalogToSave.forEach(function(item) {
+						this.findOrCreate(item);
+					})
+				})
+		},
 		createPlaylist: function(playlist) {
 			var self = this;
-			console.log('in the createPlaylist', playlist)
-			console.log("loaded = ", self.loaded);
-			console.log("playlists ", self.db.getCollection('playlists'))
-				// return new Promise(function(resolve, reject) {
 			if (self.loaded && self.db.getCollection('playlists')) {
-				// if (self.db.getCollection('playlists').find({
-				// 		'name': playlist.name
-				// 	})) {
-				// 	// self.db.saveDatabase();
-				// 	// resolve(self);
-				// } else {
-				console.log('creating');
 				var tempPlaylist = {};
 				tempPlaylist.name = playlist.name;
 				tempPlaylist.media = playlist.media;
@@ -144,28 +174,6 @@ angApp.factory('Storage', function($rootScope) {
 					q: title
 				}
 			})
-		},
-		updateTimestamp: function(mediaTitle,
-			season, episode, newTimestamp) {
-			return new Promise(function(resolve, reject) {
-				if (self.loaded && self.db.getCollection('media')) {
-					findOmdb(mediaTitle)
-						.then(function(metadata) {
-							if (self.media.find({
-									'_id': metadata.imdb.id
-								})) {
-								var updating = self.media.findOne({
-									'_id': metadata.imdb.id
-								})
-								updating.seasons[season][episode].timestamp =
-									newTimestamp;
-								resolve(self.media.update(updating));
-							} else {
-								reject(new Error('media not found'));
-							}
-						})
-				}
-			})
 		}
-	};
+	}
 });
