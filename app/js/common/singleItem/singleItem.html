@@ -1,23 +1,23 @@
 <div class="row backdrop" style="background-image: url({{mediaData.backdrop}}); height: 100vh; background-color:black">
-		<div class="col-md-12 boxed">
-	<h1 class="text-center">{{mediaData.title}}</h1>
-	<hr>
-	<div class="col-md-3 text-center">
-		<img ng-src="{{mediaData.poster}}"></img>
-	</div>
-	<div class="col-md-3 mediaInfo">
-		<p>Director: {{mediaData.director}}</p>
-		<p>Actors: </p>
-		<p ng-repeat="actor in mediaData.actors">{{actor}}</p>
-		<p>Runtime: {{mediaData.runtime}}</p>
-		<p>Rated: {{mediaData.rated}}</p>
-		<p>Plot: {{mediaData.plot}}</p>
-		<br>
-		<button class="btn btn-default" ng-if="!series" ui-sref="playerState({data: mediaData._id, path: mediaData.path})">
-			Play Movie
-				</button>
-			</div>
-			<div class="col-md-3" style="background-color: black">
+	<div class="col-md-12 boxed">
+		<h1 class="text-center">{{mediaData.title}}</h1>
+		<hr>
+		<div class="col-sm-3 text-center">
+			<img ng-src="{{mediaData.poster}}" class="fixed-ratio-resize"></img>
+		</div>
+		<div class="col-sm-6 mediaInfo">
+			<p>Director: {{mediaData.director}}</p>
+			<p>Actors: </p>
+			<p ng-repeat="actor in mediaData.actors">{{actor}}</p>
+			<p>Runtime: {{mediaData.runtime}}</p>
+			<p>Rated: {{mediaData.rated}}</p>
+			<p>Plot: {{mediaData.plot}}</p>
+			<br>
+			<button class="btn btn-default" ng-if="!series" ui-sref="playerState({data: mediaData._id, path: mediaData.path})">
+				Play Movie
+			</button>
+		</div>
+		<div class="col-sm-3" style="background-color: black">
 			<span ng-if="series" ng-repeat="season in seasons">
 				<div ng-repeat="episode in season">
 					<button ui-sref="playerState({data: mediaData._id, path: episode.path})" class="btn btn-primary btn-block">Episode {{episode.num}}</button>
