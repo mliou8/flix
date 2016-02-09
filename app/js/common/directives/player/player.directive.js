@@ -6,6 +6,7 @@ angApp.directive('player', function() {
       var wjs = require("wcjs-player")
       var player = new wjs("#player").addPlayer({ autoplay: true });
       player.addPlaylist(scope.filePath);
+      scope.showSidebar = false;
     }
   };
 });
