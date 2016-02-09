@@ -20,14 +20,6 @@
   }
 }
 
-html {
-  background-color: black;
-}
-
-body {
-  background-color: black;
-}
-
 #error {
   color: #fff;
   text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #089de3 , 0 0 70px #089de3 , 0 0 80px #089de3 , 0 0 100px #089de3 ;
@@ -49,5 +41,4 @@ body {
 @import 'sidebar/main';
 @import 'forms/main';
 @import 'singleItem/main';
-@import 'addRemote/main';
 @import 'player/main';
