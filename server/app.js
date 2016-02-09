@@ -6,7 +6,7 @@ expApp.listen(3000, function() {
   var host = this.address().address;
   var port = this.address().port;
 
-  console.log('Example app listening at http://%s:%s', host, port);
+  console.log('app listening at http://%s:%s', host, port);
 });
 
 expApp.get('/', function(req, res, next) {

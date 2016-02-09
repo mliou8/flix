@@ -109,9 +109,11 @@ angApp.factory('Storage', function($rootScope, $http) {
 			})
 		},
 		getRemote: function(link) {
+			console.log('ip address', link);
 			$http.get(link + '/catalog')
 				.then(function(catalog) {
-					var catalogToSave = _.map(catalog, function(item) {
+					console.log('catalog',catalog);
+					var catalogToSave = _.forEach(catalog, function(item) {
 						if (item.type === 'movie') {
 							item.remote = true;
 							item.route = link + '/allFiles/' + item._id + '/';
@@ -127,7 +129,9 @@ angApp.factory('Storage', function($rootScope, $http) {
 					return catalogToSave;
 				})
 				.then(function(catalogToSave) {
+					console.log('catalog to save', catalogToSave)
 					return catalogToSave.forEach(function(item) {
+						console.log('item', item)
 						this.findOrCreate(item);
 					})
 				})
