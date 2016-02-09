@@ -1,5 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: comfortaa; }
 
 .col-xs-10 {
   padding: 0px !important; }
@@ -7,22 +9,23 @@
 .col-xs-2 {
   padding: 0px !important; }
 
-.brand {
-  display: inline-block;
-  border: none;
-  color: white;
-  text-decoration: normal;
-  text-align: center;
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  white-space: pre;
-  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px #089de3, 0 0 70px #089de3, 0 0 80px #089de3, 0 0 100px #089de3;
-  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1); }
+#error {
+  color: #fff;
+  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px #089de3, 0 0 70px #089de3, 0 0 80px #089de3, 0 0 100px #089de3; }
+
+#error span {
+  animation: upper 11s linear infinite; }
+
+@keyframes upper {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: .99;
+    text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px #089de3, 0 0 70px #089de3, 0 0 80px #089de3, 0 0 100px #089de3; }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+    text-shadow: none; } }
 
 .background {
+  height: 100vh;
   background-color: black; }
 
 .hovereffect {
@@ -33,7 +36,8 @@
   cursor: default; }
 
 .img-responsive {
-  margin-bottom: 5%;
+  margin-top: 5px;
+  margin-bottom: 20px;
   height: 400px !important;
   width: 300px !important; }
 
@@ -108,9 +112,8 @@
 
 #fileholder {
   border: 10px dashed #ccc;
-  width: 300px;
-  height: 300px;
-  margin: 20px auto; }
+  width: 100%;
+  height: 100%; }
 
 #fileholder.hover {
   border: 10px dashed #333; }
@@ -126,14 +129,15 @@ body {
   .sidebar li {
     list-style: none; }
   .sidebar h1 {
-    width: 100%;
-    font: normal 48px/normal "Warnes", Helvetica, sans-serif; }
+    padding: 50px;
+    width: 100%; }
   .sidebar button {
     width: 100%;
     background: transparent;
     border: none;
     height: 80px;
-    font-size: 20px; }
+    font-size: 20px;
+    color: #696969; }
   .sidebar button:focus {
     outline: 0; }
   .sidebar button:hover {
