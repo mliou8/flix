@@ -5,7 +5,7 @@ angApp.directive('player', function() {
     link: function(scope, element, attribute){
       var wjs = require("wcjs-player")
       var player = new wjs("#player").addPlayer({ autoplay: true });
-      player.addPlaylist('file:///' + scope.filePath);
+      player.addPlaylist(scope.filePath);
     }
   };
 });

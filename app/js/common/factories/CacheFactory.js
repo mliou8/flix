@@ -80,9 +80,51 @@ angApp.factory('Storage', function($rootScope, $http) {
 								self.db.getCollection('media').insert(media);
 								console.log(media);
 								self.db.saveDatabase();
+								console.log(self.db);
 								resolve(self);
 							}
 						})
+				} else {
+					reject(new Error('db is not ready'));
+				}
+			});
+		},
+		findOrCreateRemote: function(mediaObj) {
+			console.log(mediaObj);
+			var self = this;
+			return new Promise(function(resolve, reject) {
+				if (self.loaded && self.db.getCollection('media')) {
+					if (self.db.getCollection('media').find({
+							'_id': mediaObj._id
+						}).length) {
+						var media = self.db.getCollection('media').findOne({
+							'_id': mediaObj._id
+						})
+						if (media.type === 'series') {
+							Object.keys(mediaObj.seasons).forEach(function(key) {
+								if (media.seasons[key]) {
+									media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[key], 'num');
+								} else {
+									media.seasons[key] = mediaObj.seasons[key];
+								}
+							})
+						}
+						self.db.saveDatabase();
+						resolve(self);
+						//Still need to return actual file
+					} else {
+						var media = {};
+						media = mediaObj;
+						media._id = mediaObj._id;
+						if (media.type === 'series') media.seasons = mediaObj.seasons;
+						if (media.type === 'movie') media.path = mediaObj.path;
+						console.log('collections', self.db.collections);
+						console.log('media to insert', media);
+						self.db.getCollection('media').insert(media);
+						console.log('media to insert', media);
+						self.db.saveDatabase();
+						resolve(self);
+					}
 				} else {
 					reject(new Error('db is not ready'));
 				}
@@ -109,19 +151,22 @@ angApp.factory('Storage', function($rootScope, $http) {
 			})
 		},
 		getRemote: function(link) {
+			var self = this;
 			console.log('ip address', link);
 			$http.get(link + '/catalog')
 				.then(function(catalog) {
 					console.log('catalog',catalog);
-					var catalogToSave = _.forEach(catalog, function(item) {
+					var catalogToSave = _.forEach(catalog.data, function(item) {
 						if (item.type === 'movie') {
+							console.log(item);
 							item.remote = true;
-							item.route = link + '/allFiles/' + item._id + '/';
+							item.path = link + '/allFiles/' + item._id + '/';
 						} else {
 							for (var key in item.seasons) {
 								item.seasons[key].forEach(function(episode) {
+									console.log(episode);
 									episode.remote = true;
-									episode.route = link + '/allFiles/' + item._id + '/' + key + '/' + episode.num;
+									episode.path = link + '/allFiles/' + item._id + '/' + key + '/' + episode.num;
 								})
 							}
 						}
@@ -130,9 +175,40 @@ angApp.factory('Storage', function($rootScope, $http) {
 				})
 				.then(function(catalogToSave) {
 					console.log('catalog to save', catalogToSave)
-					return catalogToSave.forEach(function(item) {
-						console.log('item', item)
-						this.findOrCreate(item);
+					return _.forEach(catalogToSave, function(mediaObj) {
+						delete mediaObj.$loki
+						delete mediaObj.meta
+						if (self.db.getCollection('media').find({
+								'_id': mediaObj._id
+							}).length) {
+								console.log('in updating', mediaObj)
+							var media = self.db.getCollection('media').findOne({
+								'_id': mediaObj._id
+							})
+							if (media.type === 'series') {
+								Object.keys(mediaObj.seasons).forEach(function(key) {
+									if (media.seasons[key]) {
+										media.seasons[key] = _.unionBy(media.seasons[key], mediaObj.seasons[key], 'num');
+									} else {
+										media.seasons[key] = mediaObj.seasons[key];
+									}
+								})
+							}
+							self.db.saveDatabase();
+							//Still need to return actual file
+						} else {
+							console.log('in creating', mediaObj);
+							var media = {};
+							media = mediaObj;
+							media._id = mediaObj._id;
+							if (media.type === 'series') media.seasons = mediaObj.seasons;
+							if (media.type === 'movie') media.path = mediaObj.path;
+							console.log('collections', self.db.collections);
+							console.log('media to insert', media);
+							self.db.getCollection('media').insert(media);
+							console.log('media to insert', media);
+							self.db.saveDatabase();
+						}
 					})
 				})
 		},
