@@ -1,14 +1,11 @@
-<div class="pane-sm sidebar">
-
-		<h1 class="brand text-center">Flixie</h1>
-
-	<ul class="sidebar-nav">
-		<li class="sidebar-brand">Library</li>
-		<li> <a ui-sref="tvShows({tvshowId: tvshow._id})">TV Shows</a> </li>
-		<li> <a ui-sref="movies({movieId: movie._id})">Movies</a> </li>
-		<li> <a ng-click="togglePlaylists()">Playlists</a> </li>
-	</ul>
-	<button ui-sref="explorerState">Explorer</button>
-	<button ui-sref="dashboardState">Dashboard</button>
+<div class="col-xs-12 sidebar">
+	<h1 class="brand">Flixie</h1>
+	<br>
+	<button class="sidebarButton" ui-sref="movies({movieId: movie._id})">Movies</button>
+	<button class="sidebarButton" ui-sref="tvShows({tvshowId: tvshow._id})">TV Shows</button>
+	<button class="sidebarButton">Library</button>
+	<button class="sidebarButton" ng-click="togglePlaylists()">Playlists</button>
+	<button class="sidebarButton home" ui-sref="explorerState">Explorer</button>
+	<button class="sidebarButton" ui-sref="dashboardState">Dashboard</button>
 	<button ui-sref="addRemoteState">Add IP</button>
 </div>
