@@ -9,9 +9,6 @@
 .col-xs-2 {
   padding: 0px !important; }
 
-#error:hover {
-  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px #089de3, 0 0 70px #089de3, 0 0 80px #089de3, 0 0 100px #089de3; }
-
 #error {
   color: #fff;
   text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px #089de3, 0 0 70px #089de3, 0 0 80px #089de3, 0 0 100px #089de3; }
@@ -28,6 +25,7 @@
     text-shadow: none; } }
 
 .background {
+  height: 100vh;
   background-color: black; }
 
 .hovereffect {
@@ -38,9 +36,10 @@
   cursor: default; }
 
 .img-responsive {
-  margin-bottom: 5%;
+  margin-top: 5px;
+  margin-bottom: 20px;
   height: 400px !important;
-  width: 380px !important; }
+  width: 300px !important; }
 
 .hovereffect .overlay {
   width: 100%;
@@ -130,13 +129,15 @@ body {
   .sidebar li {
     list-style: none; }
   .sidebar h1 {
+    padding: 50px;
     width: 100%; }
   .sidebar button {
     width: 100%;
     background: transparent;
     border: none;
     height: 80px;
-    font-size: 20px; }
+    font-size: 20px;
+    color: #696969; }
   .sidebar button:focus {
     outline: 0; }
   .sidebar button:hover {

@@ -33,7 +33,7 @@ function createMainWindow() {
 	win.loadURL(`file://${__dirname}/index.html`);
 	// win.loadURL('http://127.0.0.1:3000/');
 	win.on('closed', onClosed);
-	
+
 	return win;
 }
 

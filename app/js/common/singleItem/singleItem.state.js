@@ -11,7 +11,10 @@ angApp.config(function($stateProvider) {
         var backdrop = media.title.replace(/%20/g, " ");
 				$http.get("http://api.movies.io/movies/search?q=" + backdrop)
 					.then(function(response) {
+						console.log(response.data)
             media.backdrop = response.data.movies[0].backdrop.urls.original;
+						media.trailer = response.data.movies[0].trailer.url;
+						media.runtime = response.data.movies[0].runtime;
 					})
 				return media
 			}
