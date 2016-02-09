@@ -9,6 +9,12 @@
 .col-xs-2 {
   padding: 0px !important; }
 
+html {
+  background-color: black; }
+
+body {
+  background-color: black; }
+
 #error {
   color: #fff;
   text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white, 0 0 40px #089de3, 0 0 70px #089de3, 0 0 80px #089de3, 0 0 100px #089de3; }
@@ -25,7 +31,6 @@
     text-shadow: none; } }
 
 .background {
-  height: 100vh;
   background-color: black; }
 
 .hovereffect {
@@ -179,3 +184,16 @@ button {
   width: 100vw;
   height: 100vh;
   color: white; }
+
+.mediaInfo {
+  float-left: true; }
+
+.fixed-ratio-resize {
+  /* basic responsive img */
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
+  /* IE8 */ }
+
+.background {
+  background-color: black; }
