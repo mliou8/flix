@@ -1,8 +1,8 @@
-
 <html>
 
 <head>
-	<meta charset="utf-8">	<title>Flixie</title>
+	<meta charset="utf-8">
+	<title>Flixie</title>
 	<link rel="stylesheet" href="public/style.css">
 	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<script src="./node_modules/angular/angular.min.js"></script>
@@ -17,16 +17,19 @@
 <body ng-app="main">
 
 	<!-- <div class="container-fluid"> -->
-		<section class="main">
-			<div class="col-xs-2" ng-controller="NavCtrl">
-				<div ng-hide="showPlaylists"><sidebar> </sidebar> </div>
-				<div ng-show="showPlaylists"><playlists></playlists> </div>
+	<section class="main">
+		<div class="col-xs-2" ng-controller="NavCtrl">
+			<div class="wrapper" ng-hide="showPlaylists">
+				<sidebar class="sticky"> </sidebar>
 			</div>
-			<div class="col-xs-10">
-				<ui-view></ui-view>
-			</div>
-		</section>
-		<footer></footer>
+			<!-- <div ng-show="showPlaylists"><playlists></playlists> </div> -->
+		</div>
+		<div class="col-xs-10">
+			<ui-view></ui-view>
+		</div>
+	</section>
+	<footer></footer>
 	<!-- </div> -->
 </body>
+
 </html>
