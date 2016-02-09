@@ -36,8 +36,6 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
 
     //Filter function broken out
     function compare(value) {
-      console.log("value ", value);
-      console.log("message.media ", $scope.message.media)
       for (var i = 0; i < $scope.message.media.length; i++) {
         // console.log("message media ", $scope.message.media[i]);
         // console.log("Value ", value)
@@ -59,7 +57,7 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
     $scope.filtered = false;
   })
 
-  $scope.playlists = Storage.findAllPlaylists();
+    $scope.playlists = Storage.findAllPlaylists();
 
   $scope.editPlaylist = function(playlist, media) {
     // console.log("playlist is ", playlist);

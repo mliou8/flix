@@ -139,7 +139,6 @@ angApp.factory('Storage', function($rootScope, $http) {
 				tempPlaylist.name = playlist.name;
 				tempPlaylist.media = playlist.media;
 				self.db.getCollection('playlists').insert(tempPlaylist);
-				console.log(tempPlaylist);
 				self.db.saveDatabase();
 			} else {
 				reject(new Error('db is not ready'));
@@ -147,7 +146,7 @@ angApp.factory('Storage', function($rootScope, $http) {
 		},
 		findAllPlaylists: function() {
 			var self = this;
-			return self.db.getCollection('playlists').data;
+				return self.db.getCollection('playlists');
 		},
 		updatePlaylist: function(playlist, media) {
 			var self = this;
