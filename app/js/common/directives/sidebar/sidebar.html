@@ -1,11 +1,10 @@
 <div class="col-xs-12 sidebar"ng-controller="SidebarCtrl">
-	<h1 class="brand">Flixie</h1>
-	<button class="sidebarButton" ui-sref="dashboardState">Dashboard</button>
-	<button class="sidebarButton">Library</button>
+	<h1 class="brand text-center" id="error">Fli<span>xi</span>e</h1>
+	<button class="sidebarButton" ui-sref="dashboardState">Library</button>
 	<button class="sidebarButton" ui-sref="movies({movieId: movie._id})">Movies</button>
 	<button class="sidebarButton" ui-sref="tvShows({tvshowId: tvshow._id})">TV Shows</button>
 	<button class="sidebarButton" ng-click="togglePlaylists()">Playlists</button>
-	<span ng-repeat="playlist in playlists track by $index">
+	<!-- <span ng-repeat="playlist in playlists track by $index">
 	<li>
 		<a ng-click="handleClick(playlist)"> {{playlist.name}} </a>
 	</li>
@@ -15,7 +14,7 @@
 			<input type="text" placeholder="Playlist Name" ng-enter="createPlaylist()"ng-model="name">
 	</li>
 </span>
-	<button ng-hide="showForm" ng-click="addNewForm()"> + Add New Playlist </button>
+	<button ng-hide="showForm" ng-click="addNewForm()"> + Add New Playlist </button> -->
 	<button class="sidebarButton home" ui-sref="explorerState">Explorer</button>
 	<button ui-sref="addRemoteState">Add IP</button>
 </div>
