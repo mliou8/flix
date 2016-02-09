@@ -3,12 +3,11 @@
 						list-style: none;
 		};
 		h1 {
+						padding: 50px;
 						width: 100%;
-						font: normal 48px/normal "Warnes", Helvetica, sans-serif;
 		}
 		background-color: black;
 		height: 100vh;
-
 		padding-left: 0 !important;
 		padding-right: 0;
 		button {
@@ -17,6 +16,7 @@
 			border: none;
 			height: 80px;
 			font-size: 20px;
+			color: #696969;
 
 		}
     button:focus {
