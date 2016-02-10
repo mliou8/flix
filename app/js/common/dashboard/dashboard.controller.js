@@ -15,7 +15,6 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
       title: name
     });
   }
-
   function findByType(type) {
     return _.filter($scope.allMedia, {
       type: type
@@ -29,7 +28,6 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
   };
 
   $scope.filtered = false;
-
   $scope.$on('handleBroadcast', function() {
     //Which version of playlist is shown
     $scope.filtered = true;
@@ -67,5 +65,4 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
     }
     Storage.updatePlaylist(playlist.name, media);
   }
-
 })

@@ -1,5 +1,5 @@
 .boxed {
-				background: rgba(0, 0, 0, 0.4);
+				background: rgba(0, 0, 0, 0.5);
 				padding: 20px;
 				width: 100vw;
 				height: 100vh;
@@ -8,10 +8,11 @@
 
 .mediaInfo {
 	float-left: true;
+	font-size: 18px;
 }
 
 .fixed-ratio-resize { /* basic responsive img */
 	max-width: 100%;
 	height: auto;
-	width: auto\9; /* IE8 */
+	width: auto; /* IE8 */
 }

@@ -3,15 +3,6 @@
   box-sizing: border-box;
   font-family: comfortaa;
 }
-
-.col-xs-10{
-  padding: 0px !important;
-}
-
-.col-xs-2{
-  padding: 0px !important;
-}
-
 @mixin clearfix {
   &:after {
     content: "";
@@ -19,6 +10,16 @@
     clear: both;
   }
 }
+.col-xs-10{
+  padding: 0px !important;
+}
+.col-xs-2{
+  padding: 0px !important;
+}
+.remote{
+  margin: 30px;
+}
+
 html {
   background-color: black;
 }
