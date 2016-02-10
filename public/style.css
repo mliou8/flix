@@ -12,11 +12,9 @@
 .remote {
   margin: 30px; }
 
-html {
-  background-color: black; }
-
 .blackbg {
-  background-color: black;
+  overflow-x: hidden;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   width: 100vw;
   height: 100vh; }
 
@@ -126,6 +124,9 @@ html {
   height: 100%;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   overflow: hidden; }
+
+.wcp-titlebar {
+  display: inline-block !important; }
 
 .upload-button {
   color: black; }
@@ -280,8 +281,3 @@ button {
   height: auto;
   width: auto;
   /* IE8 */ }
-
-.fa-arrow-left {
-  margin-top: 5%;
-  margin-left: 5%;
-  color: white; }

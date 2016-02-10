@@ -5,12 +5,10 @@
 background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 overflow: hidden;
 }
-//
-// #fileholder.hover {
-//   border: 10px dashed #333;
-// }
 
-
+.wcp-titlebar{
+  display:  inline-block !important;
+}
 .upload-button{
     color: black;
 }
