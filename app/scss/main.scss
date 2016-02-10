@@ -3,15 +3,6 @@
   box-sizing: border-box;
   font-family: comfortaa;
 }
-
-.col-xs-10{
-  padding: 0px !important;
-}
-
-.col-xs-2{
-  padding: 0px !important;
-}
-
 @mixin clearfix {
   &:after {
     content: "";
@@ -19,12 +10,19 @@
     clear: both;
   }
 }
-html {
-  background-color: black;
+.col-xs-10{
+  padding: 0px !important;
+}
+.col-xs-2{
+  padding: 0px !important;
+}
+.remote{
+  margin: 30px;
 }
 
 .blackbg {
-  background-color:black;
+  overflow-x: hidden;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   width: 100vw;
   height: 100vh;
 }
