@@ -1,6 +1,5 @@
 var path = require('path')
 var angApp = angular.module('main', ['ui.router', 'lokijs']);
-
 angApp.config(function($urlRouterProvider) {
 	$urlRouterProvider.otherwise('/');
 })
@@ -11,4 +10,5 @@ angApp.run(function($rootScope, $state, Storage) {
 		if (Storage.db.getCollection('media').data.length > 0) $state.go(
 			'dashboardState');
 	})
+
 });
