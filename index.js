@@ -5,8 +5,8 @@ const expApp = require('./server/app.js');
 
 // report crashes to the Electron project
 require('crash-reporter').start({
-	productName: 'ShafreekiTime',
-	companyName: 'ShafiqNFrenz',
+	productName: 'Flixie',
+	companyName: 'Flixie',
 	submitURL: 'https://localhost:1337',
 	autoSubmit: false
 });
@@ -27,6 +27,7 @@ function createMainWindow() {
 	const win = new electron.BrowserWindow({
 		width: 1280,
 		height: 720,
+		title: "Flixie",
 		darkTheme: true
 	});
 

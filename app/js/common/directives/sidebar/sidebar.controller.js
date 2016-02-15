@@ -8,7 +8,7 @@ angApp.controller('SidebarCtrl', function($scope, Storage, $rootScope,
     $scope.$apply($scope.playlists = Storage.db.getCollection(
       'playlists').data)
   })
-
+  $rootScope.hideSidebar = false;
   $scope.createPlaylist = function() {
     $scope.showForm = false;
     var playlist = {}
