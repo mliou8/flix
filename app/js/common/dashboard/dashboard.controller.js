@@ -2,10 +2,10 @@ var _ = require('lodash');
 angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
   playlistService) {
   Storage.init();
+
   $rootScope.$on('dbLoaded', function() {
     $scope.$apply($scope.allMedia = Storage.allMedia.data);
   });
-
   $rootScope.$on('newMediaAdded', (event) => {
     $scope.$apply($scope.allMedia = Storage.allMedia.data);
   });
@@ -35,8 +35,6 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
     //Filter function broken out
     function compare(value) {
       for (var i = 0; i < $scope.message.media.length; i++) {
-        // console.log("message media ", $scope.message.media[i]);
-        // console.log("Value ", value)
         if ($scope.message.media[i]._id == value._id) {
           console.log("true");
           return true;
@@ -58,8 +56,6 @@ angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
     $scope.playlists = Storage.findAllPlaylists();
 
   $scope.editPlaylist = function(playlist, media) {
-    // console.log("playlist is ", playlist);
-    // console.log("media is ", media);
     if (!playlist) {
       alert("not a valid selection");
     }

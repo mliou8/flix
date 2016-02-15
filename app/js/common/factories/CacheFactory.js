@@ -78,9 +78,7 @@ angApp.factory('Storage', function($rootScope, $http) {
 								if (media.type === 'series') media.seasons = mediaObj.seasons;
 								if (media.type === 'movie') media.path = mediaObj.path;
 								self.db.getCollection('media').insert(media);
-								console.log(media);
 								self.db.saveDatabase();
-								console.log(self.db);
 								resolve(self);
 							}
 						})
@@ -111,19 +109,16 @@ angApp.factory('Storage', function($rootScope, $http) {
 		},
 		getRemote: function(link) {
 			var self = this;
-			console.log('ip address', link);
 			$http.get(link + '/catalog')
 				.then(function(catalog) {
 					console.log('catalog',catalog);
 					var catalogToSave = _.forEach(catalog.data, function(item) {
 						if (item.type === 'movie') {
-							console.log(item);
 							item.remote = true;
 							item.path = link + '/allFiles/' + item._id + '/';
 						} else {
 							for (var key in item.seasons) {
 								item.seasons[key].forEach(function(episode) {
-									console.log(episode);
 									episode.remote = true;
 									episode.path = link + '/allFiles/' + item._id + '/' + key + '/' + episode.num;
 								})
@@ -137,7 +132,6 @@ angApp.factory('Storage', function($rootScope, $http) {
 					return _.forEach(catalogToSave, function(mediaObj) {
 						delete mediaObj.$loki
 						delete mediaObj.meta
-						console.log(mediaObj);
 						if (self.db.getCollection('media').find({
 								'_id': mediaObj._id
 							}).length) {
@@ -157,16 +151,13 @@ angApp.factory('Storage', function($rootScope, $http) {
 							self.db.saveDatabase();
 							//Still need to return actual file
 						} else {
-							console.log('in creating', mediaObj);
 							var media = {};
 							media = mediaObj;
 							media._id = mediaObj._id;
 							if (media.type === 'series') media.seasons = mediaObj.seasons;
 							if (media.type === 'movie') media.path = mediaObj.path;
 							console.log('collections', self.db.collections);
-							console.log('media to insert', media);
 							self.db.getCollection('media').insert(media);
-							console.log('media to insert', media);
 							self.db.saveDatabase();
 						}
 					})
