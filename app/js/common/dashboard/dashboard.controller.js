@@ -2,7 +2,6 @@ var _ = require('lodash');
 angApp.controller('DashboardCtrl', function($rootScope, $scope, Storage,
   playlistService) {
   Storage.init();
-
   $rootScope.$on('dbLoaded', function() {
     $scope.$apply($scope.allMedia = Storage.allMedia.data);
   });

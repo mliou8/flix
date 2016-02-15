@@ -4,21 +4,9 @@
 	<div id='stars2'></div>
 	<div id='stars3'></div>
 	<h1 class="brand text-center" id="error">Fli<span>xi</span>e</h1>
-	<button class="sidebarButton" ui-sref="dashboardState">Library</button>
-	<button class="sidebarButton" ui-sref="dashboardState({movieId: movie._id})">Movies</button>
-	<button class="sidebarButton" ui-sref="dashboardState({tvshowId: tvshow._id})">TV Shows</button>
-	<!-- <button class="sidebarButton" ng-click="togglePlaylists()">Playlists</button> -->
-	<!-- <span ng-repeat="playlist in playlists track by $index">
-	<li>
-		<a ng-click="handleClick(playlist)"> {{playlist.name}} </a>
-	</li>
-</span>
-<span ng-show="showForm">
-	<li>
-			<input type="text" placeholder="Playlist Name" ng-enter="createPlaylist()"ng-model="name">
-	</li>
-</span>
-	<button ng-hide="showForm" ng-click="addNewForm()"> + Add New Playlist </button> -->
-	<button class="sidebarButton home" ui-sref="explorerState">Explorer</button>
-	<button ui-sref="addRemoteState">Add IP</button>
+	<button id="library" class="sidebarButton" ui-sref="dashboardState">Library</button>
+	<button id="movies" class="sidebarButton" ui-sref="dashboardState({movieId: movie._id})">Movies</button>
+	<button id="tvshows" class="sidebarButton" ui-sref="dashboardState({tvshowId: tvshow._id})">TV Shows</button>
+	<button id="explorer" class="sidebarButton active" ui-sref="explorerState">Explorer</button>
+	<button id="addip" class="sidebarButton" ui-sref="addRemoteState">Add IP</button>
 </div>

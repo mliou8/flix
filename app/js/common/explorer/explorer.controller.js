@@ -13,6 +13,7 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
 	var parseVideo = require('video-name-parser');
 	var _ = require('lodash');
 	var Promise = require('bluebird')
+	var $ = require('jquery');
 
 	//Button called "browse", opens homedirectory of user
 	$scope.openHome = function() {
@@ -96,6 +97,7 @@ angApp.controller('ExplorerCtrl', function($scope, $element, vidConstants,
 						return Storage.findOrCreate(eachRecord)
 					}))
 					.then(function() {
+						$('#library').addClass("active").siblings().removeClass("active");
 						$state.go('dashboardState')
 					})
 			})
