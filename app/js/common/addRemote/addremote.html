@@ -5,13 +5,9 @@
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form> -->
-<div class="blackbg">
-  <div id='stars'></div>
-  <div id='stars2'></div>
-  <div id='stars3'></div>
-  <button class="btn btn-primary remote" ng-click="getRemote()">Shafiq's Computer</button>
-    <br>
-  <button class="btn btn-primary remote" ng-click="getRemote()">Mike's Computer</button>
-    <br>
-  <button class="btn btn-primary remote" ng-click="getRemote()">Mark's Computer</button>
+<div class="col-md-12 blackbg">
+	<div class="col-md-4" ng-repeat="network in networks">
+		<button class="remote" ng-click="getRemote(network.ip)"><i class="fa fa-wifi"></i>{{network.hostname}}</button>
+		<br>
+	</div>
 </div>
