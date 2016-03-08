@@ -3,8 +3,13 @@ angApp.directive('player', function($rootScope) {
 		restrict: 'E',
 		templateUrl: './app/js/common/directives/player/player.html',
 		link: function(scope, element, attribute) {
-			var $ = require('jquery')
-			var wjs = require("wcjs-player")
+			var $ = require('jquery');
+			var wjs = require('wcjs-player');
+			var chromecastjs = require('chromecast-js');
+			window.devices = [];
+			var browser = new chromecastjs.Browser();
+
+
       window.player = new wjs("#player").addPlayer({ autoplay: true });
       $rootScope.hideSidebar = true;
       player.addPlaylist(scope.filePath);
@@ -13,7 +18,24 @@ angApp.directive('player', function($rootScope) {
         $rootScope.hideSidebar = false;
         player.clearPlaylist();
         scope.goHome();
-      }
+      };
+
+			browser.on('deviceOn', function(device){
+				$(".wcp-toolbar").append('<div class="wcp-button wcp-right"><button><img src="./app/assets/icons/ic_cast_grey.png"></button></div>');
+			});
+
+			// browser.on('deviceOn', function(device){
+      //   device.connect()
+      //   device.on('connected', function(){
+      //
+      //     device.play(movie, 60, function(){
+      //         console.log('Playing in your chromecast!')
+      //     });
+      //   })
+      // })
+
+
+
 			var Annyang = require('annyang')
 			// Let's define our first command. First the text we expect, and then the function it should call
 		  var commands = {
