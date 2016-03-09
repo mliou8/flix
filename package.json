@@ -41,6 +41,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "findit": "^2.0.0",
+    "fluent-ffmpeg": "^2.0.1",
     "fs": "0.0.2",
     "glob": "^6.0.4",
     "gulp": "^3.8.11",
